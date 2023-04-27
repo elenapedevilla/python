@@ -21,11 +21,13 @@ print(num_str, type(num_str))
 #Assignment by input()
 nome = input('inserire nome: ')
 print('Il mio nome è ' + nome)
+
+#Format
 print('Il mio nome è {}'.format(nome))
 #due modi diversi per fare la stessa cosa
 
 num = int(input('inserire numero: '))
-print('la variabile è di tipo {}'. format(num, type(num)))
+print('la variabile è di tipo {}'.format(num, type(num)))
 
 
 
@@ -82,25 +84,27 @@ cos1 = int(cos(a1))
 cos2 = int(cos(a2))
 cos3 = int(cos(a3))
 cos4 = int(cos(a4))
-
 print(cos1, cos2, cos3, cos4)
 
 #Per converture un angolo in radianti
 from math import *
 angolo = 180
 ang_rad = radians(angolo)
+#la funzione è radians
 print(ang_rad)
 
 #Per convertire da radianti a °
 from math import *
 radianti = pi
 ang_grad = int(degrees(radianti))
+#la funzione è degrees
 print(ang_grad)
+
 
 
 #Funzioni
 #funzione
-def stampa(n): #così dichiaro la funzione
+def stampa(n): #così dichiaro la funzione; stampa è il nome che io dò a questa funzione, potrebbe chiamarsi in qualsiasi altro modo
     return n
 
 #--- main script ---
@@ -109,11 +113,11 @@ print(stampa(nome))
 
 -
 def stampa(n):
-    return n*2 #uscirà camillocamillo
+    return n*2 
 
 #--- main script ---
 nome = 'camillo'
-print(stampa(nome))
+print(stampa(nome)) #uscirà camillocamillo
 
 -
 #funzione
@@ -154,10 +158,10 @@ def somma(x, y):
 primo_num = 3
 secondo_num = 2
 s = somma(primo_num, secondo_num)
-#print(somma(primo_num, secondo_num))
+print(somma(primo_num, secondo_num))
+#oppure 
+print(s)
 print('{} + {} = {}'.format(primo_num, secondo_num, s))
           
 primo_num = int(input('Inserire primo numero: '))
 secondo_num = int(input('Inserire secondo numero: '))
-
-print('{} + {} = {}'.format(pr, sec, somma(pr, sec))
