@@ -146,3 +146,18 @@ print(x)
 #a e b sono variabili locali (non ci si può accedere da ovunque)
 #num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell)
 
+-
+def somma(x, y):
+    s = x + y
+    return s
+#--- main ---
+primo_num = 3
+secondo_num = 2
+s = somma(primo_num, secondo_num)
+#print(somma(primo_num, secondo_num))
+print('{} + {} = {}'.format(primo_num, secondo_num, s))
+          
+primo_num = int(input('Inserire primo numero: '))
+secondo_num = int(input('Inserire secondo numero: '))
+
+print('{} + {} = {}'.format(pr, sec, somma(pr, sec))
