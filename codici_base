@@ -1,0 +1,148 @@
+#Assegnazione di variabili
+nome = 'chiara'
+num = 23
+voto = 23.5
+
+print(nome, type(nome))
+print(num,type(num))
+print(voto, type(voto))
+
+
+
+#Changing types
+num = 5
+num_str = str(num)
+
+print(num, type(num))
+print(num_str, type(num_str))
+
+
+
+#Assignment by input()
+nome = input('inserire nome: ')
+print('Il mio nome è ' + nome)
+print('Il mio nome è {}'.format(nome))
+#due modi diversi per fare la stessa cosa
+
+num = int(input('inserire numero: '))
+print('la variabile è di tipo {}'. format(num, type(num)))
+
+
+
+#Mathematical operations
+a = 5
+b = 10
+print(a, b)
+
+somma = a + b
+print(somma)
+#scrivere print(somma) e scrivere direttamente nella shell somma è la stessa cosa
+print('La somma di {} e {} è {}'.format(a, b, somma))
+print('La sottrazione di {} e {} è {}'.format(a,b, sottr))
+
+
+#String operations
+frase1 = 'ciao '
+frase2 = 'si '
+frase = frase1 + frase2 #così facendo concateno le due stringhe
+frase = frase1 * 3 #uscirà ciao ciao ciao
+
+a = 'Supercalifragilisti'
+b = 'chespiralidoso'
+frase = a + b
+print(frase)
+
+frase1 = 'andale'
+frase2 = 'ariba'
+out = (frase1 * 2) + (frase2 * 2)
+
+
+
+#Math module
+import math
+pigreco = math.pi
+print(pigreco)
+print(math.pi)
+#o stessa cosa
+from math import * #con * me li importa tutti
+from math import pi #mi importa solo il pi, non gli altri moduli
+
+from math import *
+a1 = pi/2 # 90° in radianti
+a2 = pi #180°
+a3 = (3/2)*pi #270°
+a4 = 2*pi
+sin1 = int(sin(a1))
+sin2 = int(sin(a2))
+sin3 = int(sin(a3))
+sin4 = int(sin(a4))
+print(sin1, sin2, sin3, sin4)
+
+cos1 = int(cos(a1))
+cos2 = int(cos(a2))
+cos3 = int(cos(a3))
+cos4 = int(cos(a4))
+
+print(cos1, cos2, cos3, cos4)
+
+#Per converture un angolo in radianti
+from math import *
+angolo = 180
+ang_rad = radians(angolo)
+print(ang_rad)
+
+#Per convertire da radianti a °
+from math import *
+radianti = pi
+ang_grad = int(degrees(radianti))
+print(ang_grad)
+
+
+#Funzioni
+#funzione
+def stampa(n): #così dichiaro la funzione
+    return n
+
+#--- main script ---
+nome = 'camillo'
+print(stampa(nome))
+
+-
+def stampa(n):
+    return n*2 #uscirà camillocamillo
+
+#--- main script ---
+nome = 'camillo'
+print(stampa(nome))
+
+-
+#funzione
+def pippo(n):
+    return n*2
+
+#--- main script ---
+nome = 'camillo'
+nome1 = 'pinguino'
+num = 44
+
+print(pippo(nome), pippo(nome1), pippo(num))
+#esce: camillocamillo pinguinopinguino 88
+
+-
+#funzione
+def somma(a, b):
+    # questa funzione deve restituire la somma tra due numeri
+    return a + b
+#oppure (stessa cosa)
+    s = a + b
+    return s
+
+#---------
+num1 = 10
+num2 = 6
+
+x = somma(num1, num2)
+print(x)
+#a e b sono variabili locali (non ci si può accedere da ovunque)
+#num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell)
+
