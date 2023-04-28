@@ -148,7 +148,7 @@ num2 = 6
 
 x = somma(num1, num2)
 print(x)
-#a e b sono variabili locali (non ci si può accedere da ovunque)
+#a e b sono variabili locali (non possonoe essere richiamate direttamente nel programma; non ci si può accedere da ovunque)
 #num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell)
 
 -
@@ -166,3 +166,80 @@ print('{} + {} = {}'.format(primo_num, secondo_num, s))
           
 primo_num = int(input('Inserire primo numero: '))
 secondo_num = int(input('Inserire secondo numero: '))
+
+
+#esercizio area rettangolo
+def area_rettangolo(b,h):
+    return b*h
+b = int(input('Insperire il primo numero: '))
+h = int(input('Inserire il secondo numero: '))
+
+x = area_rettangolo(b, h)
+
+print('{} * {} = {}'.format(b, h, x))
+
+
+#esercizio area cerchio
+from math import *
+
+def area_cerchio(r):
+    return pi*(r**2)
+
+raggio = int(input('Inserire valore raggio: '))
+x = area_cerchio(raggio)
+x = round(x, 5) #numero di cifre decimali che voglio dietro la virgola, in questo caso 5
+
+print('{} * {}^2 = {}'.format(pi, raggio, x))
+
+#esercizio secondi totali(h, m, s)
+from math import *
+def secondi_totali(h, m, s):
+    return (h*3600) + (m*60) + s
+
+h=5
+m=2
+s=23
+
+print(secondi_totali(h, m, s))
+
+
+
+#Conditional Execution
+def num_max(a, b):
+    if a > b:
+        return a #restituzione della variabile con il numero maggiore
+    elif b > a: #altro if
+        return b
+    elif a == b: #== confronto; al posto di elif si può anche scrivere else:
+        return False
+#---main---
+num1 = 2
+num2 = 3
+
+print(num_max(num1, num2))
+
+
+#stessa cosa usando l'input
+def num_max(a, b):
+    if a > b:
+        return a #restituzione della variabile con il numero maggiore
+    elif b > a: #altro if
+        return b
+    elif a == b: #== confronto; al posto di elif si può anche scrivere else (in questo caso non si deve scrivere a == b)
+        return False
+#---main---
+num1 = int(input('Inserire num1: '))
+num2 = int(input('Inserire num2: '))
+
+print('Il numero maggiore è {}'.format(num_max(num1, num2)))
+
+
+# Funzione che mi restituisce 'True' se il numero è pari e 'False' se dispari
+def par_dis(n):
+    if n % 2 == 0:
+        return True
+    elif n % 2 > 0:
+        return False
+
+num1 = int(input('Inserire num1: '))
+print('Il numero è pari? {}'.format(par_dis(num1)))
