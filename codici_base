@@ -243,3 +243,86 @@ def par_dis(n):
 
 num1 = int(input('Inserire num1: '))
 print('Il numero è pari? {}'.format(par_dis(num1)))
+
+
+# Funzione se n è compreso tra 0 e 10
+def n0_10(n):
+    if n>=0 and n<=10:
+        return True
+    return False #non devo riscrivere elif, basta return
+
+num = 10
+print(n0_10(num))
+
+
+#Funzione tipo
+def chetipo(a):
+    if type(a) == str:
+        return True
+    return False
+# Nel shell scrivo parola 'banana'; sotto: chetipo(parola); uscirà: True; se srivo chetipo(numero); uscirà: False
+
+
+# Funzione che valuta se la stringa a è più lunga della stringa b:
+ef lunghezza(a, b):
+    if len(a) == len(b):
+        return None
+    elif len(a) > len(b):
+        return True
+    else:
+        return False
+    
+str1 = 'avocado'
+str2 = 'papaya'
+
+print(str1, len(str1), len(str2), lunghezza(str1, str2)
+
+
+
+# Iterazione e ricorsione
+# Iterazione
+def conto_alla_rovescia_iter(n):
+    if n == 0:
+        print('Fine conto alla rovescia!')
+    else:
+        print(n)
+        # The algoritm invokes itself...
+        conto_alla_rovescia_iter(n-1)
+
+conto_alla_rovescia_iter(10)
+
+# Ricorsione
+def conto_alla_rovescia_iter(n):
+    while n == 0:
+        print(n)
+        n = n -1 # si può scrivere anche n-=1
+    print('Fine conto alla rovescia!')
+
+conto_alla_rovescia_iter(10)
+        
+# Stessa cosa si può fare anche con 'for', noi utilizzeremoprincipalmente questo
+
+# Esercizio: fattoriale di un numero naturale n
+def fatt_iter(n):
+    res = 1
+    for i in range(1, n+1):
+        res *= i #stessa cosa di res = res * i
+    return res
+    
+print(fatt_iter(4))
+
+
+
+# Le liste
+# Funzione oer contare quante volte compare un valore in una lista
+def conta_el(l,n): # parametro: lista, numero
+    c = 0 # contatore
+    for el in l:
+        if el == n:
+            c = c +1 # incrementa il contatore
+        else:
+            pass
+        return c
+  
+lista = [2, 8, 15, -1, 63, 12, 8, 82, 2, 2, 2] # lista di interi
+print(conta_el(lista, 2))
