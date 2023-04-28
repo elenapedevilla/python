@@ -22,6 +22,8 @@ print(num_str, type(num_str))
 nome = input('inserire nome: ')
 print('Il mio nome è ' + nome)
 
+
+
 #Format
 print('Il mio nome è {}'.format(nome))
 #due modi diversi per fare la stessa cosa
@@ -41,6 +43,7 @@ print(somma)
 #scrivere print(somma) e scrivere direttamente nella shell somma è la stessa cosa
 print('La somma di {} e {} è {}'.format(a, b, somma))
 print('La sottrazione di {} e {} è {}'.format(a,b, sottr))
+
 
 
 #String operations
@@ -70,7 +73,7 @@ from math import * #con * me li importa tutti
 from math import pi #mi importa solo il pi, non gli altri moduli
 
 from math import *
-a1 = pi/2 # 90° in radianti
+a1 = pi/2 #90° in radianti
 a2 = pi #180°
 a3 = (3/2)*pi #270°
 a4 = 2*pi
@@ -86,18 +89,16 @@ cos3 = int(cos(a3))
 cos4 = int(cos(a4))
 print(cos1, cos2, cos3, cos4)
 
-#Per converture un angolo in radianti
+#Per convertire un angolo in radianti
 from math import *
 angolo = 180
-ang_rad = radians(angolo)
-#la funzione è radians
+ang_rad = radians(angolo) #la funzione è radians
 print(ang_rad)
 
 #Per convertire da radianti a °
 from math import *
 radianti = pi
-ang_grad = int(degrees(radianti))
-#la funzione è degrees
+ang_grad = int(degrees(radianti)) #la funzione è degrees
 print(ang_grad)
 
 
