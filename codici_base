@@ -26,7 +26,7 @@ print('Il mio nome è ' + nome)
 
 # Format
 print('Il mio nome è {}'.format(nome))
-# due modi diversi per fare la stessa cosa
+# Due modi diversi per fare la stessa cosa
 
 num = int(input('inserire numero: '))
 print('la variabile è di tipo {}'.format(num, type(num)))
@@ -41,7 +41,7 @@ print(a, b)
 somma = a + b
 sottr = a - b
 print(somma)
-# scrivere print(somma) e scrivere direttamente nella shell somma è la stessa cosa
+# Scrivere print(somma) e scrivere direttamente nella shell somma è la stessa cosa
 print('La somma di {} e {} è {}'.format(a, b, somma))
 print('La sottrazione di {} e {} è {}'.format(a,b, sottr))
 
@@ -50,8 +50,8 @@ print('La sottrazione di {} e {} è {}'.format(a,b, sottr))
 # String operations
 frase1 = 'ciao '
 frase2 = 'si '
-frase = frase1 + frase2 # così facendo concateno le due stringhe
-frase = frase1 * 3 # uscirà ciao ciao ciao
+frase = frase1 + frase2 # Così facendo concateno le due stringhe
+frase = frase1 * 3 # Uscirà ciao ciao ciao
 
 a = 'Supercalifragilisti'
 b = 'chespiralidoso'
@@ -65,18 +65,18 @@ out = (frase1 * 2) + (frase2 * 2)
 
 
 # Math module
-import math # funziona solo se si fa ogni singola assegnazione manualmente (come riga sotto)
+import math # Funziona solo se si fa ogni singola assegnazione manualmente (come riga sotto)
 pigreco = math.pi
 print(pigreco)
 print(math.pi)
-# o stessa cosa
-from math import * # con * me li importa tutti
-from math import pi # mi importa solo il pi, non gli altri moduli
+# O stessa cosa
+from math import * # Con * me li importa tutti
+from math import pi # Mi importa solo il pi, non gli altri moduli
 
 from math import *
-a1 = pi/2 #90° in radianti
-a2 = pi #180°
-a3 = (3/2)*pi #270°
+a1 = pi/2 # 90° in radianti
+a2 = pi # 180°
+a3 = (3/2)* pi #270°
 a4 = 2*pi
 sin1 = int(sin(a1)) # int per avere un numero intero, senza decimali; se sin1 = sin(a1) uscirà 1.0; con int uscirà 1
 sin2 = int(sin(a2))
@@ -93,20 +93,20 @@ print(cos1, cos2, cos3, cos4)
 # Per convertire un angolo in radianti
 from math import *
 angolo = 180
-ang_rad = radians(angolo) # la funzione è radians
+ang_rad = radians(angolo) # La funzione è radians
 print(ang_rad)
 
 # Per convertire da radianti a °
 from math import *
-radianti = pi # al posto di pi si può mettere qualsiasi altro numero, es.: 5
-ang_grad = int(degrees(radianti)) # la funzione è degrees
+radianti = pi # Al posto di pi si può mettere qualsiasi altro numero, es.: 5
+ang_grad = int(degrees(radianti)) # La funzione è degrees
 print(ang_grad)
 
 
 
 # Funzioni
-# funzione
-def stampa(n): # così dichiaro la funzione; stampa è il nome che io dò a questa funzione, potrebbe chiamarsi in qualsiasi altro modo
+# Funzione
+def stampa(n): # Così dichiaro la funzione; stampa è il nome che io dò a questa funzione, potrebbe chiamarsi in qualsiasi altro modo
     return n
 
 # --- main script ---
@@ -119,10 +119,10 @@ def stampa(n):
 
 # --- main script ---
 nome = 'camillo'
-print(stampa(nome)) # uscirà camillocamillo
+print(stampa(nome)) # Uscirà camillocamillo
 
 -
-# funzione
+# Funzione
 def pippo(n):
     return n*2
 
@@ -132,13 +132,13 @@ nome1 = 'pinguino'
 num = 44
 
 print(pippo(nome), pippo(nome1), pippo(num))
-# esce: camillocamillo pinguinopinguino 88
+# Esce: camillocamillo pinguinopinguino 88
 
 -
-# funzione
-def somma(a, b): # questa funzione deve restituire la somma tra due numeri
+# Funzione
+def somma(a, b): # Questa funzione deve restituire la somma tra due numeri
     return a + b
-# oppure (stessa cosa)
+# Oppure (stessa cosa)
     s = a + b
     return s
 
@@ -148,7 +148,7 @@ num2 = 6
 
 x = somma(num1, num2)
 print(x)
-# a e b sono variabili locali (non possonoe essere richiamate direttamente nel programma; non ci si può accedere da ovunque)
+# a e b sono variabili locali (non possono essere richiamate direttamente nel programma; non ci si può accedere da ovunque)
 # num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell)
 
 -
@@ -160,15 +160,15 @@ primo_num = 3
 secondo_num = 2
 s = somma(primo_num, secondo_num)
 print(somma(primo_num, secondo_num))
-# oppure 
+# Oppure 
 print(s)
 print('{} + {} = {}'.format(primo_num, secondo_num, s))
           
-primo_num = int(input('Inserire primo numero: ')) # se non si mette int il software legge una stringa e quindi se primo_num = 2; secondo_num = 3; somma = primo_num + secondo_num; uscirà 23 al posto di 5
+primo_num = int(input('Inserire primo numero: ')) # Se non si mette int il software legge una stringa e quindi se primo_num = 2; secondo_num = 3; somma = primo_num + secondo_num; uscirà 23 al posto di 5
 secondo_num = int(input('Inserire secondo numero: '))
 
 
-# esercizio area rettangolo
+# Esercizio area rettangolo
 def area_rettangolo(b,h):
     return b*h
 b = int(input('Insperire il primo numero: '))
@@ -179,7 +179,7 @@ x = area_rettangolo(b, h)
 print('{} * {} = {}'.format(b, h, x))
 
 
-# esercizio area cerchio
+# Esercizio area cerchio
 from math import *
 
 def area_cerchio(r):
@@ -187,11 +187,11 @@ def area_cerchio(r):
 
 raggio = int(input('Inserire valore raggio: '))
 x = area_cerchio(raggio)
-x = round(x, 5) # numero di cifre decimali che voglio dietro la virgola, in questo caso 5
+x = round(x, 5) # Numero di cifre decimali che voglio dietro la virgola, in questo caso 5
 
 print('{} * {}^2 = {}'.format(pi, raggio, x))
 
-# esercizio secondi totali(h, m, s)
+# Esercizio secondi totali(h, m, s)
 from math import *
 def secondi_totali(h, m, s):
     return (h*3600) + (m*60) + s
@@ -207,7 +207,7 @@ print(secondi_totali(h, m, s))
 # Conditional Execution
 def num_max(a, b):
     if a > b:
-        return a # restituzione della variabile con il numero maggiore
+        return a # Restituzione della variabile con il numero maggiore
     elif b > a: # altro if
         return b
     elif a == b: # == confronto
@@ -219,11 +219,11 @@ num2 = 3
 print(num_max(num1, num2))
 
 
-# stessa cosa usando l'input
+# Stessa cosa usando l'input
 def num_max(a, b):
     if a > b:
-        return a #restituzione della variabile con il numero maggiore
-    elif b > a: #altro if
+        return a # Restituzione della variabile con il numero maggiore
+    elif b > a: # Altro if
         return b
     elif a == b: # == confronto; al posto di elif si può anche scrivere else: (in questo caso non si deve scrivere a == b)
         return False
@@ -249,7 +249,7 @@ print('Il numero è pari? {}'.format(par_dis(num1)))
 def n0_10(n):
     if n>=0 and n<=10:
         return True
-    return False #non devo riscrivere elif, basta return
+    return False # Non devo riscrivere elif, basta return
 
 num = 10
 print(n0_10(num))
@@ -276,9 +276,9 @@ str1 = 'avocado'
 str2 = 'papaya'
 
 print(str1, len(str1), str2 len(str2), lunghezza(str1, str2))
-# oppure se nel print ci serve solo True o False
+# Oppure se nel print ci serve solo True o False
 print(lunghezza(str1, str2))
-# oppure se non serve che la stringa 'avocado' e 'papaya' siano reiterate nel print
+# Oppure se non serve che la stringa 'avocado' e 'papaya' siano reiterate nel print
 print(len(str1), len(str2), lunghezza(str1, str2))
 
 
@@ -290,7 +290,7 @@ def conto_alla_rovescia_iter(n):
         print('Fine conto alla rovescia!')
     else:
         print(n)
-        #The algoritm invokes itself...
+        # The algoritm invokes itself...
         conto_alla_rovescia_iter(n-1)
 
 conto_alla_rovescia_iter(10)
@@ -300,7 +300,7 @@ conto_alla_rovescia_iter(10)
 def conto_alla_rovescia_iter(n):
     while n == 0:
         print(n)
-        n = n -1 #si può scrivere anche n-=1
+        n = n -1 # Si può scrivere anche n-=1
     print('Fine conto alla rovescia!')
 
 conto_alla_rovescia_iter(10)
@@ -312,7 +312,7 @@ conto_alla_rovescia_iter(10)
 def fatt_iter(n):
     res = 1
     for i in range(1, n+1):
-        res *= i # stessa cosa di res = res * i
+        res *= i # Stessa cosa di res = res * i
     return res
     
 print(fatt_iter(4))
@@ -321,14 +321,14 @@ print(fatt_iter(4))
 
 # Le liste
 # Funzione per contare quante volte compare un valore in una lista
-def conta_el(l,n): # parametro: lista, numero
+def conta_el(l,n): # Parametro: lista, numero
     c = 0 # contatore
     for el in l:
         if el == n:
-            c = c +1 # incrementa il contatore
+            c = c +1 # Incrementa il contatore
         else:
             pass
         return c
   
-lista = [2, 8, 15, -1, 63, 12, 8, 82, 2, 2, 2] # lista di interi
+lista = [2, 8, 15, -1, 63, 12, 8, 82, 2, 2, 2] # Lista di interi
 print(conta_el(lista, 2))
