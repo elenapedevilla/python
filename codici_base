@@ -210,7 +210,7 @@ def num_max(a, b):
         return a #restituzione della variabile con il numero maggiore
     elif b > a: #altro if
         return b
-    elif a == b: #== confronto; al posto di elif si può anche scrivere else:
+    elif a == b: #== confronto
         return False
 #---main---
 num1 = 2
@@ -225,7 +225,7 @@ def num_max(a, b):
         return a #restituzione della variabile con il numero maggiore
     elif b > a: #altro if
         return b
-    elif a == b: #== confronto; al posto di elif si può anche scrivere else (in questo caso non si deve scrivere a == b)
+    elif a == b: #== confronto; al posto di elif si può anche scrivere else: (in questo caso non si deve scrivere a == b)
         return False
 #---main---
 num1 = int(input('Inserire num1: '))
