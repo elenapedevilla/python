@@ -1,4 +1,4 @@
-#Assegnazione di variabili
+# Assegnazione di variabili
 nome = 'chiara'
 num = 23
 voto = 23.5
@@ -9,7 +9,7 @@ print(voto, type(voto))
 
 
 
-#Changing types
+# Changing types
 num = 5
 num_str = str(num)
 
@@ -18,22 +18,22 @@ print(num_str, type(num_str))
 
 
 
-#Assignment by input()
+# Assignment by input()
 nome = input('inserire nome: ')
 print('Il mio nome è ' + nome)
 
 
 
-#Format
+# Format
 print('Il mio nome è {}'.format(nome))
-#due modi diversi per fare la stessa cosa
+# due modi diversi per fare la stessa cosa
 
 num = int(input('inserire numero: '))
 print('la variabile è di tipo {}'.format(num, type(num)))
 
 
 
-#Mathematical operations
+# Mathematical operations
 a = 5
 b = 10
 print(a, b)
@@ -41,17 +41,17 @@ print(a, b)
 somma = a + b
 sottr = a - b
 print(somma)
-#scrivere print(somma) e scrivere direttamente nella shell somma è la stessa cosa
+# scrivere print(somma) e scrivere direttamente nella shell somma è la stessa cosa
 print('La somma di {} e {} è {}'.format(a, b, somma))
 print('La sottrazione di {} e {} è {}'.format(a,b, sottr))
 
 
 
-#String operations
+# String operations
 frase1 = 'ciao '
 frase2 = 'si '
-frase = frase1 + frase2 #così facendo concateno le due stringhe
-frase = frase1 * 3 #uscirà ciao ciao ciao
+frase = frase1 + frase2 # così facendo concateno le due stringhe
+frase = frase1 * 3 # uscirà ciao ciao ciao
 
 a = 'Supercalifragilisti'
 b = 'chespiralidoso'
@@ -64,21 +64,21 @@ out = (frase1 * 2) + (frase2 * 2)
 
 
 
-#Math module
-import math #funziona solo se si fa ogni singola assegnazione manualmente (come riga sotto)
+# Math module
+import math # funziona solo se si fa ogni singola assegnazione manualmente (come riga sotto)
 pigreco = math.pi
 print(pigreco)
 print(math.pi)
-#o stessa cosa
-from math import * #con * me li importa tutti
-from math import pi #mi importa solo il pi, non gli altri moduli
+# o stessa cosa
+from math import * # con * me li importa tutti
+from math import pi # mi importa solo il pi, non gli altri moduli
 
 from math import *
 a1 = pi/2 #90° in radianti
 a2 = pi #180°
 a3 = (3/2)*pi #270°
 a4 = 2*pi
-sin1 = int(sin(a1)) #int per avere un numero intero, senza decimali; se sin1 = sin(a1) uscirà 1.0; con int uscirà 1
+sin1 = int(sin(a1)) # int per avere un numero intero, senza decimali; se sin1 = sin(a1) uscirà 1.0; con int uscirà 1
 sin2 = int(sin(a2))
 sin3 = int(sin(a3))
 sin4 = int(sin(a4))
@@ -90,26 +90,26 @@ cos3 = int(cos(a3))
 cos4 = int(cos(a4))
 print(cos1, cos2, cos3, cos4)
 
-#Per convertire un angolo in radianti
+# Per convertire un angolo in radianti
 from math import *
 angolo = 180
-ang_rad = radians(angolo) #la funzione è radians
+ang_rad = radians(angolo) # la funzione è radians
 print(ang_rad)
 
-#Per convertire da radianti a °
+# Per convertire da radianti a °
 from math import *
-radianti = pi #al posto di pi si può mettere qualsiasi altro numero, es.: 5
-ang_grad = int(degrees(radianti)) #la funzione è degrees
+radianti = pi # al posto di pi si può mettere qualsiasi altro numero, es.: 5
+ang_grad = int(degrees(radianti)) # la funzione è degrees
 print(ang_grad)
 
 
 
-#Funzioni
-#funzione
-def stampa(n): #così dichiaro la funzione; stampa è il nome che io dò a questa funzione, potrebbe chiamarsi in qualsiasi altro modo
+# Funzioni
+# funzione
+def stampa(n): # così dichiaro la funzione; stampa è il nome che io dò a questa funzione, potrebbe chiamarsi in qualsiasi altro modo
     return n
 
-#--- main script ---
+# --- main script ---
 nome = 'camillo'
 print(stampa(nome))
 
@@ -117,58 +117,58 @@ print(stampa(nome))
 def stampa(n):
     return n*2 
 
-#--- main script ---
+# --- main script ---
 nome = 'camillo'
-print(stampa(nome)) #uscirà camillocamillo
+print(stampa(nome)) # uscirà camillocamillo
 
 -
-#funzione
+# funzione
 def pippo(n):
     return n*2
 
-#--- main script ---
+# --- main script ---
 nome = 'camillo'
 nome1 = 'pinguino'
 num = 44
 
 print(pippo(nome), pippo(nome1), pippo(num))
-#esce: camillocamillo pinguinopinguino 88
+# esce: camillocamillo pinguinopinguino 88
 
 -
-#funzione
+# funzione
 def somma(a, b): # questa funzione deve restituire la somma tra due numeri
     return a + b
-#oppure (stessa cosa)
+# oppure (stessa cosa)
     s = a + b
     return s
 
-#---------
+# ---------
 num1 = 10
 num2 = 6
 
 x = somma(num1, num2)
 print(x)
-#a e b sono variabili locali (non possonoe essere richiamate direttamente nel programma; non ci si può accedere da ovunque)
-#num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell)
+# a e b sono variabili locali (non possonoe essere richiamate direttamente nel programma; non ci si può accedere da ovunque)
+# num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell)
 
 -
 def somma(x, y):
     s = x + y
     return s
-#--- main ---
+# --- main ---
 primo_num = 3
 secondo_num = 2
 s = somma(primo_num, secondo_num)
 print(somma(primo_num, secondo_num))
-#oppure 
+# oppure 
 print(s)
 print('{} + {} = {}'.format(primo_num, secondo_num, s))
           
-primo_num = int(input('Inserire primo numero: ')) #se non si mette int il software legge una stringa e quindi se primo_num = 2; secondo_num = 3; somma = primo_num + secondo_num; uscirà 23 al posto di 5
+primo_num = int(input('Inserire primo numero: ')) # se non si mette int il software legge una stringa e quindi se primo_num = 2; secondo_num = 3; somma = primo_num + secondo_num; uscirà 23 al posto di 5
 secondo_num = int(input('Inserire secondo numero: '))
 
 
-#esercizio area rettangolo
+# esercizio area rettangolo
 def area_rettangolo(b,h):
     return b*h
 b = int(input('Insperire il primo numero: '))
@@ -179,7 +179,7 @@ x = area_rettangolo(b, h)
 print('{} * {} = {}'.format(b, h, x))
 
 
-#esercizio area cerchio
+# esercizio area cerchio
 from math import *
 
 def area_cerchio(r):
@@ -187,11 +187,11 @@ def area_cerchio(r):
 
 raggio = int(input('Inserire valore raggio: '))
 x = area_cerchio(raggio)
-x = round(x, 5) #numero di cifre decimali che voglio dietro la virgola, in questo caso 5
+x = round(x, 5) # numero di cifre decimali che voglio dietro la virgola, in questo caso 5
 
 print('{} * {}^2 = {}'.format(pi, raggio, x))
 
-#esercizio secondi totali(h, m, s)
+# esercizio secondi totali(h, m, s)
 from math import *
 def secondi_totali(h, m, s):
     return (h*3600) + (m*60) + s
@@ -204,30 +204,30 @@ print(secondi_totali(h, m, s))
 
 
 
-#Conditional Execution
+# Conditional Execution
 def num_max(a, b):
     if a > b:
-        return a #restituzione della variabile con il numero maggiore
-    elif b > a: #altro if
+        return a # restituzione della variabile con il numero maggiore
+    elif b > a: # altro if
         return b
-    elif a == b: #== confronto
+    elif a == b: # == confronto
         return False
-#---main---
+# ---main---
 num1 = 2
 num2 = 3
 
 print(num_max(num1, num2))
 
 
-#stessa cosa usando l'input
+# stessa cosa usando l'input
 def num_max(a, b):
     if a > b:
         return a #restituzione della variabile con il numero maggiore
     elif b > a: #altro if
         return b
-    elif a == b: #== confronto; al posto di elif si può anche scrivere else: (in questo caso non si deve scrivere a == b)
+    elif a == b: # == confronto; al posto di elif si può anche scrivere else: (in questo caso non si deve scrivere a == b)
         return False
-#---main---
+# ---main---
 num1 = int(input('Inserire num1: '))
 num2 = int(input('Inserire num2: '))
 
@@ -255,16 +255,16 @@ num = 10
 print(n0_10(num))
 
 
-#Funzione tipo
+# Funzione tipo
 def chetipo(a):
     if type(a) == str:
         return True
     return False
-# Nel shell scrivo parola 'banana'; sotto: chetipo(parola); uscirà: True; se srivo chetipo(numero); uscirà: False
+# Nel shell scrivo parola 'banana'; sotto: chetipo('banana'); uscirà: True; se srivo chetipo(4); uscirà: False
 
 
 # Funzione che valuta se la stringa a è più lunga della stringa b:
-ef lunghezza(a, b):
+def lunghezza(a, b):
     if len(a) == len(b):
         return None
     elif len(a) > len(b):
@@ -275,7 +275,11 @@ ef lunghezza(a, b):
 str1 = 'avocado'
 str2 = 'papaya'
 
-print(str1, len(str1), len(str2), lunghezza(str1, str2)
+print(str1, len(str1), str2 len(str2), lunghezza(str1, str2))
+# oppure se nel print ci serve solo True o False
+print(lunghezza(str1, str2))
+# oppure se non serve che la stringa 'avocado' e 'papaya' siano reiterate nel print
+print(len(str1), len(str2), lunghezza(str1, str2))
 
 
 
@@ -286,27 +290,29 @@ def conto_alla_rovescia_iter(n):
         print('Fine conto alla rovescia!')
     else:
         print(n)
-        # The algoritm invokes itself...
+        #The algoritm invokes itself...
         conto_alla_rovescia_iter(n-1)
 
 conto_alla_rovescia_iter(10)
+
 
 # Ricorsione
 def conto_alla_rovescia_iter(n):
     while n == 0:
         print(n)
-        n = n -1 # si può scrivere anche n-=1
+        n = n -1 #si può scrivere anche n-=1
     print('Fine conto alla rovescia!')
 
 conto_alla_rovescia_iter(10)
         
-# Stessa cosa si può fare anche con 'for', noi utilizzeremoprincipalmente questo
+# Stessa cosa si può fare anche con 'for', noi utilizzeremo principalmente questo
+
 
 # Esercizio: fattoriale di un numero naturale n
 def fatt_iter(n):
     res = 1
     for i in range(1, n+1):
-        res *= i #stessa cosa di res = res * i
+        res *= i # stessa cosa di res = res * i
     return res
     
 print(fatt_iter(4))
@@ -314,7 +320,7 @@ print(fatt_iter(4))
 
 
 # Le liste
-# Funzione oer contare quante volte compare un valore in una lista
+# Funzione per contare quante volte compare un valore in una lista
 def conta_el(l,n): # parametro: lista, numero
     c = 0 # contatore
     for el in l:
