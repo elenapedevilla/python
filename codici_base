@@ -39,6 +39,7 @@ b = 10
 print(a, b)
 
 somma = a + b
+sottr = a - b
 print(somma)
 #scrivere print(somma) e scrivere direttamente nella shell somma è la stessa cosa
 print('La somma di {} e {} è {}'.format(a, b, somma))
@@ -64,7 +65,7 @@ out = (frase1 * 2) + (frase2 * 2)
 
 
 #Math module
-import math
+import math #funziona solo se si fa ogni singola assegnazione manualmente (come riga sotto)
 pigreco = math.pi
 print(pigreco)
 print(math.pi)
@@ -77,7 +78,7 @@ a1 = pi/2 #90° in radianti
 a2 = pi #180°
 a3 = (3/2)*pi #270°
 a4 = 2*pi
-sin1 = int(sin(a1))
+sin1 = int(sin(a1)) #int per avere un numero intero, senza decimali; se sin1 = sin(a1) uscirà 1.0; con int uscirà 1
 sin2 = int(sin(a2))
 sin3 = int(sin(a3))
 sin4 = int(sin(a4))
@@ -97,7 +98,7 @@ print(ang_rad)
 
 #Per convertire da radianti a °
 from math import *
-radianti = pi
+radianti = pi #al posto di pi si può mettere qualsiasi altro numero, es.: 5
 ang_grad = int(degrees(radianti)) #la funzione è degrees
 print(ang_grad)
 
@@ -135,8 +136,7 @@ print(pippo(nome), pippo(nome1), pippo(num))
 
 -
 #funzione
-def somma(a, b):
-    # questa funzione deve restituire la somma tra due numeri
+def somma(a, b): # questa funzione deve restituire la somma tra due numeri
     return a + b
 #oppure (stessa cosa)
     s = a + b
@@ -164,7 +164,7 @@ print(somma(primo_num, secondo_num))
 print(s)
 print('{} + {} = {}'.format(primo_num, secondo_num, s))
           
-primo_num = int(input('Inserire primo numero: '))
+primo_num = int(input('Inserire primo numero: ')) #se non si mette int il software legge una stringa e quindi se primo_num = 2; secondo_num = 3; somma = primo_num + secondo_num; uscirà 23 al posto di 5
 secondo_num = int(input('Inserire secondo numero: '))
 
 
@@ -196,9 +196,9 @@ from math import *
 def secondi_totali(h, m, s):
     return (h*3600) + (m*60) + s
 
-h=5
-m=2
-s=23
+h = 5
+m = 2
+s = 23
 
 print(secondi_totali(h, m, s))
 
