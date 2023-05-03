@@ -76,7 +76,7 @@ from math import pi # Mi importa solo il pi, non gli altri moduli
 from math import *
 a1 = pi/2 # 90° in radianti
 a2 = pi # 180°
-a3 = (3/2)* pi #270°
+a3 = (3/2) * pi #270°
 a4 = 2*pi
 sin1 = int(sin(a1)) # int per avere un numero intero, senza decimali; se sin1 = sin(a1) uscirà 1.0; con int uscirà 1
 sin2 = int(sin(a2))
@@ -148,8 +148,8 @@ num2 = 6
 
 x = somma(num1, num2)
 print(x)
-# a e b sono variabili locali (non possono essere richiamate direttamente nel programma; non ci si può accedere da ovunque)
-# num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell)
+# a e b sono variabili locali (non possono essere richiamate direttamente nel programma; non ci si può accedere da ovunque; esistono solo all'interno della funzione)
+# num1 e num2 sono variabili globali (ci si può accedere ad es. dal shell; esistono all'interno di tutto il programma)
 
 -
 def somma(x, y):
@@ -291,44 +291,101 @@ def conto_alla_rovescia_iter(n):
     else:
         print(n)
         # The algoritm invokes itself...
-        conto_alla_rovescia_iter(n-1)
+        conto_alla_rovescia_iter(n - 1) # Con (n - 2) il conto alla rovescia non sarà più 10, 9, 8, 7 ecc. ma 10, 8, 6, 4, 2
 
 conto_alla_rovescia_iter(10)
 
 
 # Ricorsione
-def conto_alla_rovescia_iter(n):
-    while n == 0:
+def conto_alla_rovescia_ric(n):
+   while n > 0:
         print(n)
-        n = n -1 # Si può scrivere anche n-=1
+        n = n - 1 
+   print('Fine conto alla rovescia!)
+conto_alla_rovescia_ric(10) # Esce la stessa cosa come nell'Iterazione
+ 
+ def conto_alla_rovescia_ric(n):
+   while n == 0:
+        print(n)
+        n = n - 1 # Si può scrivere anche n -= 1
     print('Fine conto alla rovescia!')
 
-conto_alla_rovescia_iter(10)
+conto_alla_rovescia_ric(10)
         
-# Stessa cosa si può fare anche con 'for', noi utilizzeremo principalmente questo
+        
+# Stessa cosa si può fare anche con 'for', noi utilizzeremo principalmente questo ciclo
+
+def conto_alla_rovescia_for() # Non serve un parametro, a noi serve solo il range e quello lo dichiariamo al suo interno
+    cont = range(0, 11)
+    for i in cont:
+        print(i)
+        
+conto_alla_rovescia_for()
 
 
 # Esercizio: fattoriale di un numero naturale n
+def fatt(n):
+    if n == 0:
+        return 1 
+    #else:
+    return n * fatt(n-1)
+
+# Oppure sfruttando l'iterazione al posto della ricorsione
+
 def fatt_iter(n):
     res = 1
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         res *= i # Stessa cosa di res = res * i
-    return res
+    return res # Quando esce dal ciclo/quando questa condizione non si verifica più mi restituisce res
     
 print(fatt_iter(4))
 
 
 
-# Le liste
+# Le liste (iniziano sempre da zero; primo valore = 0)
+lista = [2, 8, 15, -1, 63, 12, 8, 82, 2, 2, 2] # Lista di interi
+for element in lista:
+    print(element) # Stampa tutta la lista degli elementi
+    
+    print(element**3) # Stampa valori al cubo
+
+
 # Funzione per contare quante volte compare un valore in una lista
 def conta_el(l,n): # Parametro: lista, numero
-    c = 0 # contatore
+    c = 0 # Contatore parte da 0
     for el in l:
-        if el == n:
-            c = c +1 # Incrementa il contatore
-        else:
-            pass
-        return c
+        if el == n: # Se l'elemento è uguale ad n (n è il numero che noi passiamo come paramentro) incremento il contatore 
+            c = c + 1 # Incrementa il contatore
+        else: # Se l'elemento è diverso dal numero che noi stiamo andando a cercare
+            pass # Con pass lo script non fa niente, va oltre, lo passa
+    return c # Ritorna al ciclo; quindi passa gli elementi e ritorna al ciclo finché gli elementi della lista non finiscono, finché non arriva alla fine della lista
   
-lista = [2, 8, 15, -1, 63, 12, 8, 82, 2, 2, 2] # Lista di interi
-print(conta_el(lista, 2))
+lista = [2, 8, 15, -1, 63, 12, 8, 82, 2, 2, 2] # Prima si scrive la funzione, solo dopo si mette la lista
+print(conta_el(lista, 2)) # Uscirà 4, in quanto l'elemento 2 compare 4 volte nella lista
+
+
+# Append (appendere dei valori all'interno delle liste)
+def insert_input():
+    L = []
+    for el in range (10): # Questa lista ha 10 posizioni: da 0 a 9; dunque, finché la lista non arriva a 10 noi possiamo aggiungere valori (nello shell)
+        b = input
+        L.append(b)
+    print(L)
+insert_input()
+
+
+# Modulo Random
+from random import *
+def insert_random(n, L):
+    L = [] # Dichiaro una losta vuota in cui 'appendere' dei valori
+    for el in range(10): # Per ogni elemento nel range di 10
+        b = randint(0, 10) # Creo una variabile in cui vado a mettere un numero random che va da 0 a 10 (numero intero = randint)
+        L.append(b) # Alla lista appendo questo numero
+    print(L)
+    if n in L: # Se questo numero è presente nella lista stampa:
+        print('Il numero {} è presente nella lista!'.format(n))
+    elif n not in L:
+        print('Il numero {} non è presente nella lista!'.format(n))
+
+num = input('Scegli numero: ')
+insert_random(num)
