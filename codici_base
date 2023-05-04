@@ -236,7 +236,7 @@ print('Il numero maggiore è {}'.format(num_max(num1, num2)))
 
 # Funzione che mi restituisce 'True' se il numero è pari e 'False' se dispari
 def par_dis(n):
-    if n % 2 == 0:
+    if n % 2 == 0: # % è il modulo
         return True
     elif n % 2 > 0:
         return False
@@ -247,7 +247,7 @@ print('Il numero è pari? {}'.format(par_dis(num1)))
 
 # Funzione se n è compreso tra 0 e 10
 def n0_10(n):
-    if n>=0 and n<=10:
+    if n >= 0 and n <= 10: # And e or sono valori booliani
         return True
     return False # Non devo riscrivere elif, basta return
 
@@ -349,13 +349,25 @@ for element in lista:
     
     print(element**3) # Stampa valori al cubo
 
+L = ['patate', 'carciofi', 'zucchero', 'caffè', 'mela', 'latte', 'cocco'] 
+# Se non voglio stampare la lista intera, ma solo alcune
+L[2:5] # Nello shell compariranno le parole da zucchero a latte
+
+# Nello shell:
+s = 'scolapasta'
+s[2:5] # Uscirà ola
+
+s1 = ciaociao
+s2 = s[0:4] # Uscirà solo ciao, in quanto prende solo i primi 4 elementi
+stot = s + s2 # Uscirà scolapastaciao
+stot2 = s + ' ' + s2 # Così uscirà scolapasta ciao; abbiamo aggiunto uno spazio; si può acnhe aggiungere ad es. un punto di domanda '?'
 
 # Funzione per contare quante volte compare un valore in una lista
 def conta_el(l,n): # Parametro: lista, numero
-    c = 0 # Contatore parte da 0
+    c = 0 # Contatore parte da 0, variabile vuota, ci vuole 0
     for el in l:
         if el == n: # Se l'elemento è uguale ad n (n è il numero che noi passiamo come paramentro) incremento il contatore 
-            c = c + 1 # Incrementa il contatore
+            c = c + 1 # Incrementa il contatore; ogni volta che questa condizione si verifica il contatore verrà incrementato; più elegante: c += 1 stessa cosa
         else: # Se l'elemento è diverso dal numero che noi stiamo andando a cercare
             pass # Con pass lo script non fa niente, va oltre, lo passa
     return c # Ritorna al ciclo; quindi passa gli elementi e ritorna al ciclo finché gli elementi della lista non finiscono, finché non arriva alla fine della lista
@@ -377,15 +389,33 @@ insert_input()
 # Modulo Random
 from random import *
 def insert_random(n, L):
-    L = [] # Dichiaro una losta vuota in cui 'appendere' dei valori
+    L = [] # Dichiaro una lista vuota in cui 'appendere' dei valori
     for el in range(10): # Per ogni elemento nel range di 10
         b = randint(0, 10) # Creo una variabile in cui vado a mettere un numero random che va da 0 a 10 (numero intero = randint)
         L.append(b) # Alla lista appendo questo numero
     print(L)
     if n in L: # Se questo numero è presente nella lista stampa:
         print('Il numero {} è presente nella lista!'.format(n))
-    elif n not in L:
+    elif n not in L: # Si può anche mettere direttamente else o indentare prima il print (senza elif o else9)
         print('Il numero {} non è presente nella lista!'.format(n))
 
 num = input('Scegli numero: ')
 insert_random(num)
+
+
+# Serie numerica di fibonacci con liste e ricorsione 
+def fibonacci(n):
+    if n <= 0:
+        return [] # Mi stampa una lista vuota
+    elif n == 1:
+        return [0]
+    elif n == 2:
+        return [0, 1]
+    else:
+        fib = fibonacci(n-1)
+        fib.append(fib[-1] + fib[-2]) # Alla lista vado ad appendere questi due elementi
+        return fib
+
+n = int(input('Inserisci un numero: '))
+fib_sec = fibonacci(n)
+print('I primi {} numeri della serie di Fiboncci sono {}:'.format(n, fib_sec))
