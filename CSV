@@ -1,0 +1,76 @@
+# Importare sulla prima riga i moduli/metodi
+import csv
+my_csv = open("C:/lab2_python/montecristo_point.csv", 'r') # Cambiare da backslash a slash
+table = csv.reader(my_csv, delimiter = 1,1)
+
+for row in table:
+    print(row) # Stampa le coordinate come stringhe, sono delimitate dall'apice
+    print(row[1]) # Stampa solo la prima colonna
+    
+    
+    
+# Tipo di dizionario
+# Ad ogni valore è assegnata una chiave
+Veggies = doct([
+    ('Winter', 'Cauliflowers')
+    ('Spring', 'Artichokes')
+    ('Summer', 'Eggplants')
+    ('Fall', 'Pumpkins')
+])
+
+# Nello shell:
+type(Veggies) # Esce: class'dict'
+len(Veggies) # Esce: 4, non 8, perché prende le coppie di valori
+
+
+
+# Abbiamo cambiato il r (reader) a DictReader
+for row in table:
+    print((row), type(row), len(row)) # Ora se stampiamo vediamo ogni volta anche l'headliner
+    print(row['coordx']) # Stampiamo solo la coordinata x
+    
+    for row in table:
+        a = float(row['coordx'])
+        print(a, type(a)) # Ci siamo svincolati dal tipo stringa; con type vediamo che uscirà 'float'
+
+
+
+# Mettere l'header in modo automatico
+my_csv = open("C:/lab2_python/montecristo_point.csv", 'r')
+table = csv.reader(my_csv, delimiter = ',')
+
+L = []
+for row in table:
+    L.append(row)
+print(List)
+
+
+
+# Salviamo il tutto in un nuovo csv in cui andremo ad 'appendere' gli header
+import csv
+header = ['id', 'coord_x', 'coord_y', 'h']
+my_csv = open("C:/lab2_python/montecristo_point_copy.csv", 'r')
+table = csv.reader(my_csv, delimiter = ',')
+
+L = []
+for row in table:
+    L.append(row)
+print(L)
+
+out_csv = open("C:/lab2_python/montecristo_point_header.csv", 'r')
+new_table = csv.wrter(out_csv, delimiter = '\t' # t sta per tabulazione, al posto del delimitatore con virgola abbiamo messo il delimitatore con tabulazione
+new_table.wroterows(header)
+newtable.writerows(L)
+
+my_csv.close()
+out_csv.close()
+
+
+L = []
+for row in table:
+    h_el = int(row[3] + 48)
+    print(h_el)
+    
+    row.appen(h_el)
+    L.append(row) # Se ora stampo L vediamo che uno è una stringa '' e l'altro è un intero (senza '')
+    print(row) # Non ha l'header, visto che non glielo abbiamo anora messo
