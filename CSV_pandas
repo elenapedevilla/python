@@ -48,7 +48,7 @@ print(List)
 
 # Salviamo il tutto in un nuovo csv in cui andremo ad 'appendere' gli header
 import csv
-header = ['id', 'coord_x', 'coord_y', 'h']
+header = ['id', 'coord_x', 'coord_y', 'h'] # Normalmente l'header non si deve aggiungere, lo si ha già
 my_csv = open("C:/lab2_python/montecristo_point_copy.csv", 'r')
 table = csv.reader(my_csv, delimiter = ',')
 
@@ -74,3 +74,11 @@ for row in table:
     row.appen(h_el)
     L.append(row) # Se ora stampo L vediamo che uno è una stringa '' e l'altro è un intero (senza '')
     print(row) # Non ha l'header, visto che non glielo abbiamo anora messo
+    
+    
+
+
+# Pandas
+import pandas as pd
+my_csv = pd.read_csv("C:\lab2_python\montecristo_point.csv")
+my_csv ['h_elips'] = my_csv['h']
