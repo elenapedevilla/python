@@ -77,8 +77,37 @@ for row in table:
     
     
 
-
-# Pandas
+# Metodo Pandas
 import pandas as pd
 my_csv = pd.read_csv("C:\lab2_python\montecristo_point.csv")
 my_csv ['h_elips'] = my_csv['h']
+
+
+
+
+# Esercizio dati meteo Ostiglia
+# Metodo csv
+import csv
+
+header = ['stazione', 'data', 'tmin', 'tmax']
+
+my_csv = open("C:/lab2_python/dati_meteo_ostiglia.csv", 'r')
+
+table = csv.reader(my_csv, delimiter = ',')
+
+L = []
+for row in table:
+    t_mean = (float(row[2]) + float(row[3])) / 2 # t_mean = temperatura media
+    row.append(t_mean)
+    print(row)
+
+out_temp_csv = open('C:/lab2_python/dati_meteo_ostiglia_mean_today1.csv', 'w')
+new_table_temp = csv.writer(out_temp_csv, delimiter = ',')
+new_table_temp.writerow(header)
+new_table_temp.writerow(L)
+
+temp_csv ???
+
+# Metodo pandas
+import pandas as pd
+header = ['stazione', 'data', 'tmin', 'tmax']
