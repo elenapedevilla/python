@@ -419,3 +419,10 @@ def fibonacci(n):
 n = int(input('Inserisci un numero: '))
 fib_sec = fibonacci(n)
 print('I primi {} numeri della serie di Fiboncci sono {}:'.format(n, fib_sec))
+
+
+
+# Fotoframmetria
+# Calcolo distanza di presa
+# Per calcolare la distanza di presa ci servono i seguenti parametri: GSD, distanza, dimensione del pixel
+dist_presa = float((gsd * dist) / dim) # Formula = (GSD * dis) / dim
