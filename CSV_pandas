@@ -1,18 +1,21 @@
 # Importare sulla prima riga i moduli/metodi
 import csv
 my_csv = open("C:/lab2_python/montecristo_point.csv", 'r') # Cambiare da backslash a slash
-table = csv.reader(my_csv, delimiter = 1,1)
+table = csv.reader(my_csv, delimiter = ',')
 
-for row in table:
+for row in table: # Per tutte le righe in table
     print(row) # Stampa le coordinate come stringhe, sono delimitate dall'apice
+    print(row, type(row)) # Stampa anche il tipo: class 'list'
+    print(row, type(row), len(row)) # Mi dice anche quant'è lunga questa riga, in questo caso 4 campi/colonne
     print(row[1]) # Stampa solo la prima colonna
+    print([row[1]]) # Stampa le cooordinate come lista, tra []
     
     
     
 # Tipo di dizionario
 # Ad ogni valore è assegnata una chiave
-Veggies = doct([
-    ('Winter', 'Cauliflowers')
+Veggies = dict([
+    ('Winter', 'Cauliflowers') # Si tratta di una coppia
     ('Spring', 'Artichokes')
     ('Summer', 'Eggplants')
     ('Fall', 'Pumpkins')
@@ -24,68 +27,100 @@ len(Veggies) # Esce: 4, non 8, perché prende le coppie di valori
 
 
 
-# Abbiamo cambiato il r (reader) a DictReader
+# Cambiamo il r (reader) a DictReader (invece che come csv glielo facciamo leggere come dizionario)
+table = csv.DictReader(my_csv, delimiter = ',') # Adesso ho l'header,   uindi posso stampare la corlonna direttamente richiamando il titolo della colonna
+print(row['coordx']) # Ora invece di richiamare il numero dell'indice posso andare ad utilizzare direttamente il nome dell'header
+
 for row in table:
     print((row), type(row), len(row)) # Ora se stampiamo vediamo ogni volta anche l'headliner
     print(row['coordx']) # Stampiamo solo la coordinata x
+
+# Aggiungiamo 1000 alla coordinata x per vedere che ci siamo svincolati dal tipo stringa e che quindi possiamo fare delle operazioni
+for row in table:
+        a = float(row['coordx'])
+        print(a + 1000)
     
-    for row in table:
+for row in table:
         a = float(row['coordx'])
         print(a, type(a)) # Ci siamo svincolati dal tipo stringa; con type vediamo che uscirà 'float'
 
 
 
-# Mettere l'header in modo automatico
-my_csv = open("C:/lab2_python/montecristo_point.csv", 'r')
-table = csv.reader(my_csv, delimiter = ',')
-
-L = []
-for row in table:
-    L.append(row)
-print(List)
-
-
-
-# Salviamo il tutto in un nuovo csv in cui andremo ad 'appendere' gli header
+# Mettere l'header in modo automatico: nel nostro file abbiamo già l'header, quindi creiamo una copia dove togliamo l'header per inserirlo manualmente: montecristo_point_copy
+# Creo una lista alla quale assegno i nomi delle intestazioni dell'header
 import csv
-header = ['id', 'coord_x', 'coord_y', 'h'] # Normalmente l'header non si deve aggiungere, lo si ha già
-my_csv = open("C:/lab2_python/montecristo_point_copy.csv", 'r')
+header = ['id', 'coord_x', 'coord_y', 'h'] # Creazione della lista-header; normalmente l'header non si deve aggiungere, lo si ha già
+my_csv = open("C:/lab2_python/montecristo_point_copy.csv", 'r') # Salviamo il tutto in un nuovo csv in cui andremo ad 'appendere' gli header
 table = csv.reader(my_csv, delimiter = ',')
 
 L = []
 for row in table:
-    L.append(row)
+    L.append(row) # Quando il ciclo finisce/quando non appende più va a stampare
 print(L)
 
-out_csv = open("C:/lab2_python/montecristo_point_header.csv", 'r')
-new_table = csv.wrter(out_csv, delimiter = '\t' # t sta per tabulazione, al posto del delimitatore con virgola abbiamo messo il delimitatore con tabulazione
-new_table.wroterows(header)
-newtable.writerows(L)
+
+out_csv = open("C:/lab2_python/montecristo_point_header.csv", 'w') # Abbiamo creato una cartella apposita che si chiama out; w = write, perché devo scrivere un nuovo file
+# Creo una nuova variabile tabella in cui vado a scrivere ogni riga ma con in testa l'header
+# new_table = csv.writer(out_csv, delimiter = '\t') # t sta per tabulazione, al posto del delimitatore con virgola abbiamo messo il delimitatore con tabulazione; csv.writer non più csv.reader
+new_table = csv.writer(out_csv, delimiter = ',') # Usiamo comunque il delimitatore con virgola
+new_table.writerow(header)
+new_table.writerows(L) # Riscrive la lista, mette all'interno tutto ciò che c'è nella lista; mi scrive la lista di liste
+
+# Alla fine bisogna andare a chiudere tutte le variabili che ho aperto
+my_csv.close()
+out_csv.close()
+# Ora nel file montecristo_point_header abbiamo l'header, lo abbiamo aggiunto
+
+
+
+# Appendiamo un nuovo elemento alla fine della row/list - creiamo una nuova colonna: in questo caso aggiungiamo dei valori ricavati da calcoli di valori già esistenti all'interno della tabella
+# Aggiungiamo h_ellips (quota ellissoidica: formula: h = H + N; H = quota geoidica; N = ondulazione del geoide)
+# Utilizziamo nuovamente il file copy senza headliner
+import csv
+header = ['id', 'coord_x', 'coord_y', 'h', 'h_ellips'] # Abbiamo aggiunto una colonna: h_ellips
+my_csv = open("C:/lab2_python/montecristo_point_copy.csv", 'r') 
+table = csv.reader(my_csv, delimiter = ',')
+
+L = []
+for row in table: # Il ciclo rispetto a prima cambia, dato che andiamo a fare un calcolo
+    h_el = int(row[3]) + 48 # int per i valori interi # Possiamo anche scrivere h_ellips, non importa; row: vediamo in che posizione si trova il valore di cui vogliamo fare il calcolo (h) + il valore d'ondulazione (preso da un sito)
+    print(h_el) # Si stampa il calcolo, la colonna dei calcoli
+    
+    row.append(h_el) # Vado ad appendere questa colonna
+    L.append(row) # Se ora stampo L vediamo che i valori delle colonne già esistenti sono in stringa '' e quelli della 'nuova' colonna (h_el) sono interi (senza '') --> noi glielo abbiamo specificato nel calcolo che volevamo gli interi
+    print(row) # Non ha l'header, visto che non glielo abbiamo ancora messo; ora glielo mettiamo facendo la stessa identica cosa di prima
+
+out_csv = open("C:/lab2_python/montecristo_point_header.csv", 'w') 
+new_table = csv.writer(out_csv, delimiter = ',') 
+new_table.writerow(header)
+new_table.writerows(L) 
 
 my_csv.close()
 out_csv.close()
-
-
-L = []
-for row in table:
-    h_el = int(row[3] + 48)
-    print(h_el)
-    
-    row.appen(h_el)
-    L.append(row) # Se ora stampo L vediamo che uno è una stringa '' e l'altro è un intero (senza '')
-    print(row) # Non ha l'header, visto che non glielo abbiamo anora messo
-    
+# Ora nel file montecristo_point_header abbiamo anche l'h_ellips
     
 
 # Metodo Pandas
 import pandas as pd
-my_csv = pd.read_csv("C:\lab2_python\montecristo_point.csv")
-my_csv ['h_elips'] = my_csv['h']
+my_csv = pd.read_csv("C:\lab2_python\montecristo_point.csv") # La funzione serve per leggere un csv
 
+# print(my_csv) # Pandas non usa un ciclo for per stampare tutte le righe del csv
+# print(my_csv['coordx']) # Pandas assegna automaticamente un id suo
+# Il modulo pandas ragiona in modo diverso da csv: ragiona per dataframes: non devo utilizzare cicli, liste
+# Se nello shell scrivo my_csv['h'] stampa tutta la colonna delle quote, conosce già l'headliner
+
+#print(type(my_csv['h_elips']))
+
+my_csv ['h_elips'] = my_csv['h'] + 48 # Aggiungiamo la colonna della quota ellissoidica
+my_csv.to_csv("C:/lab2_python/out/PANDAS_montecristo_point_h_elips_5-4.csv", index = False) # Il path lo scrivo io; il suo header non ci piace, la prima colonna è vuota, ci disorienta solo, quindi lo togliamo con index = False
+print('Done!') # Metodo molto più veloce; in questo caso non abbiamo fatto il procedimento dell'header, perché normalmente lo si ha
 
 
 
 # Esercizio dati meteo Ostiglia
+# Alla fine voglio l'header e voglio i dati della temperatura media
+# Gli ultimi due valori sono valori di temperature; per fare la media si fa un calcolo tra gli ultimi due valori 
+
 # Metodo csv
 import csv
 
@@ -97,17 +132,30 @@ table = csv.reader(my_csv, delimiter = ',')
 
 L = []
 for row in table:
-    t_mean = (float(row[2]) + float(row[3])) / 2 # t_mean = temperatura media
-    row.append(t_mean)
+    t_mean = (float(row[2]) + float(row[3])) / 2 # t_mean = temperatura media; temperatura minima [2] + temperatura massima [3]
+    row.append(t_mean) # Lo appendiamo alla fine di ogni riga
     print(row)
 
-out_temp_csv = open('C:/lab2_python/dati_meteo_ostiglia_mean_today1.csv', 'w')
+out_temp_csv = open('C:/lab2_python/out_ostiglia/dati_meteo_ostiglia_t_mean_today1.csv', 'w')
 new_table_temp = csv.writer(out_temp_csv, delimiter = ',')
 new_table_temp.writerow(header)
 new_table_temp.writerow(L)
 
-temp_csv ???
+temp_csv.close()
+out_temp_csv.close()
+
+print('Ostiglia meteo data have been created.')
+
+
 
 # Metodo pandas
 import pandas as pd
-header = ['stazione', 'data', 'tmin', 'tmax']
+header = ['stazione', 'data', 'temp_min', 'temp_max', 'temp_mean'] # In questo esempio aggiungiamo l'header con pandas, quindi lo cancelliamo dal file csv per poi inserire l'header da pandas
+temp_data = pd.read_csv("C:/lab2_python/dati_meteo_ostiglia.csv", names = header) 
+temp_data.head()
+temp_data['temp_mean'] = (temp_data['temp_min'] + temp_data['temp_max']) / 2 
+
+# print(temp_data, tyope(temp_data)
+
+temp_data.to_csv("C:/lab2_python/out_pandas/dati_meteo_ostiglia_t_mean_header_today1.csv", index = False)
+print('Ostiglia meteo data have been created using pandas.')
