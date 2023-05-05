@@ -157,5 +157,5 @@ temp_data['temp_mean'] = (temp_data['temp_min'] + temp_data['temp_max']) / 2
 
 # print(temp_data, tyope(temp_data)
 
-temp_data.to_csv("C:/lab2_python/out_pandas/dati_meteo_ostiglia_t_mean_header_today1.csv", index = False)
+temp_data.to_csv("C:/lab2_python/out_pandas/dati_meteo_ostiglia_t_mean_header_today1.csv", index = False) # Prima ho creato una cartella in lab2_python che si chiama out_pandas
 print('Ostiglia meteo data have been created using pandas.')
