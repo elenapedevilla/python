@@ -358,7 +358,7 @@ s = 'scolapasta'
 s[2:5] # Uscirà ola
 
 s1 = ciaociao
-s2 = s[0:4] # Uscirà solo ciao, in quanto prende solo i primi 4 elementi
+s2 = s1[0:4] # Uscirà solo ciao, in quanto prende solo i primi 4 elementi
 stot = s + s2 # Uscirà scolapastaciao
 stot2 = s + ' ' + s2 # Così uscirà scolapasta ciao; abbiamo aggiunto uno spazio; si può acnhe aggiungere ad es. un punto di domanda '?'
 
@@ -403,7 +403,7 @@ num = input('Scegli numero: ')
 insert_random(num)
 
 
-# Serie numerica di fibonacci con liste e ricorsione 
+# Serie numerica di fibonacci con liste e ricorsione - ogni numero di questa lista è la somma del numero precedente: 0+1, 1+1, 1+2 ecc.
 def fibonacci(n):
     if n <= 0:
         return [] # Mi stampa una lista vuota
@@ -413,7 +413,7 @@ def fibonacci(n):
         return [0, 1]
     else:
         fib = fibonacci(n-1)
-        fib.append(fib[-1] + fib[-2]) # Alla lista vado ad appendere questi due elementi
+        fib.append(fib[-1] + fib[-2]) # Alla lista vado ad appendere questi due elementi; -1 = vado ad appendere l'elemento di prima; -2 = vado ad appendere i due elementi di prima
         return fib
 
 n = int(input('Inserisci un numero: '))
@@ -425,4 +425,26 @@ print('I primi {} numeri della serie di Fiboncci sono {}:'.format(n, fib_sec))
 # Fotoframmetria
 # Calcolo distanza di presa
 # Per calcolare la distanza di presa ci servono i seguenti parametri: GSD, distanza, dimensione del pixel
-dist_presa = float((gsd * dist) / dim) # Formula = (GSD * dis) / dim
+def distanza_presa(gsd, dist, dim):
+                   dist_presa = float((gsd * dist) / dim) # Formula = (GSD * dis) / dim
+                   dist_presa_m = dist_presa / 1000
+                   return dist_presa_m
+
+# Calcolo Ground Sample Point (GSD)
+def ground_sampe_p(dist, dim, deist_princ):
+    gsd = float ((dist_princ / dist) * dim)
+    return gsd #mm
+    
+# Calcolo impronta fotogramma
+def impronta_foto(distr, dist_princ, h_sens, v_sens):
+    h = float ((dist, dist_princ, h_sens, v_sens):
+               h_m = h / 1000
+               v = float ((dist_princ / dist) * v_sens)
+               v_m = v / 1000
+               return h, h_m, v, v_m
+
+# Calcolo strisciamento
+def strisciamento (vel_avanz, vel_scatto):
+    strisc = float(vel_avanz * vel_scatto)
+    strisc_mm = strisc * 1000
+    return strisc_mm
