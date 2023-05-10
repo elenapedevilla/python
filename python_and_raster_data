@@ -1,0 +1,67 @@
+# Aprire qgis; console python; mostra editor
+from osgeo import gdal
+my_data =gdal.Open("C:/lab2_python/pianosa/pianosa_dem.tif")
+print(my_data.GetMetadata()) # Stampa metadati
+
+band = my_data.GetRasterBand(1) # In questo caso prendiamo la prima banda; lavoriamo con valori di quota (DEM)
+band_value = band.ReadAsArray() # Leggere i valori di band come un array; l'array legge la banda come se fosse una matrice
+print(band_value) # Esce una lista di liste: tutti i valori sono zero perché riprendono il mare
+
+print(type(band))
+print(band_value[400, 500]) # Esce il valore di pixel che ha queste coordinate (400 e 500)
+
+
+# Get spatial references of the raster
+spatial = my_data.GetSpatialRef()
+print(spatial) # Stampa di tutte le informazioni spaziali relative al raster: proiezione. sistema di riferimento, datum, assi
+
+
+# Sampling
+def sample(table, raster): # Parametri della funzione: il csv che dobbiamo utilizzare per il campionamento (table) e il raster su cui dobbiamo lavorare
+sample("C:/lab2_python/pianosa/points_pianosa.csv", "C:\lab2_python\pianosa\pianosa_dem.tif") # Path che contiene il csv + il path del raster su cui stiamo andando a lavorare
+# Per non dover sempre copiare tutto il path si possono creare delle variabili che vanno a richiamare direttamente il path, così il sample sarà più corto
+
+
+# Creazione di un nuovo file per questa funzione (più in alto a sinistra)
+from osgeo import gdal
+import csv 
+
+def sample(table, raster):
+    data = gdal.Open(raster) # Aprire il dato raster
+    band = data.GetRasterBand(1) # Leggere la banda di questo raster, la prima è l'unica di questo raster
+    band_arr = band.ReadAsArray() # Leggere la banda come un array, come una matrice di numeri
+    gt = data.GetGeotrasform() # Creazione di una variabile che contiene la geotrasformata (= serve per convertire le coordinate mappa in coordinate pixel; sono valori di tipo tupla: valori dentro la tupla non possono essere modificati, non possono essere aggiunti e tolti valori)
+    
+    my_csv = open(table, 'r') # Aprire il csv ci serve per andare a fare il campionamento su questo raster
+    punti = csv.reader(my_csv, delimiter = ',') # Andiamo a creare un reader che ha la virgola come delimitatore
+    
+    header = ['id', 'nome', 'stato', 'coordx', 'coordy']
+    L = [] # Lista vuota (superlista) nella quale verranno accumulate tutte le righe del csv
+
+
+# Creazione di un loop (come sempre quando si lavora con csv)
+for row in  punti: 
+    # Per tutte le righe del file csv andiamo a dichiarare delle variabili che contengono i valori delle righe 3 e 4 
+    xcoord = float(row[3]) # Va a prendere tutti i valori che si trovano nella riga/lista 3 (la riga delle coordinate x) per ogni ciclo e in ogni ciclo cambieranno, dato che va a scorrere tutte le righe
+    ycoord = float(row[4])
+    
+    # Creazione di nuove variabili: andiamo a calcolare le coordinate pixel/raster; si calcolano utilizzando la geotrasformata
+    px = int((xcoord - gt[0]) / gt[1]) # 0 = coordinata x; 1 = risoluzione del pixel
+    py = int((ycoord - gt[3]) / gt[5]) # 3 = coordianta y; 5 = risoluzione del pixel
+    
+    # Andiamo a leggere la prima banda in queste coordinate pixel
+    quota = band_arr[py, px]
+    row.append(quota) # Aggiungo il valore alla lista, lo vado ad appendere
+    L.append(row) # Alla fine si appende questa lista alla superlista
+
+
+# Creazione di un nuovo csv di scrittura
+new_csv = open("C:/lab2_python/pianosa/points_pianosa.csv", 'w') 
+writer = csv.writer(new_csv, delimiter = ',')
+writer.writerows(L)
+
+# Chiusura di tutti i dati aperti
+data = None # None perché il raster non ci serve più, quindi lo chiudiamo
+my_csv.close()
+new_csv.close
+    
