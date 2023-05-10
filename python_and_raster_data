@@ -64,4 +64,52 @@ writer.writerows(L)
 data = None # None perché il raster non ci serve più, quindi lo chiudiamo
 my_csv.close()
 new_csv.close
+
+
+# Richiamare la funzione
+sample("C:/lab2_python/pianosa/points_pianosa.csv", "C:/lab2_python/pianosa/pianosa_dem.tif")
+print('Done')
+
+
+
+# OS 
+# = Fornisce delle funzioni che ci permettono di interagire con un sistema operativo
+import os
+os.chdir("C:\lab2_python") # Settaggio della working directory; prende tutti i dati di quella cartella. Dopo questa operazione non c'è più nessun bisogno di andare a specificare il path dei file
+
+# Andiamo a leggere le righe del csv come dizionario dict() e non come liste list()
+punti = csv.DictReader(my_csv, delimiter = ',')
+
+L = []
+for row in punti:
+    list_row = [] # Creiamo questa minilista di appoggio per andare ad aggiungere tutti i valori di ogni riga ogni ciclo
+    xcoord = float(row['xcoord']) # Non gli andiamo più a dare il ciclo, ma il nome della colonna; gli diciamo che la colonna x la troviamo in questo indice del dizionario
+    ycoord = float(row['ycoord'])
+    px = int((xcoord - gt[0] / gt[1]) # Coordinate raster, passaggio uguale a quello di prima
+    py = int((ycoord - gt[3] / gt[5])
+    quota = float(band.ReadAsArray(px, py, 1, 1)) # Differenza rispetto a prima: la banda viene letta come array; 1 e 1 sono quanti valori va a leggere (è più una formalità che altro); prende il valore del pixel che corrisponde alle coordinate raster di px e py sull'array
     
+# Dunque, nella list_row verranno appesi i valori ogni riga per ogni ciclo; stessa cosa di prima solo che va a considerare le righe non come liste ma come dizionario
+
+# I valori relativi alla quota saranno aggiunti ciclicamente al dizionario
+    list_row.append(row['id']) # Per ogni lista si va ad aggiungere la riga
+    list_row.append(row['luogo'])
+    list_row.append(row['stato'])
+    list_row.append(row['xcoord'])
+    list_row.append(row['ycoord'])
+    list_row.append(quota)
+    L.append(list_row) # Alla superlista appendiamo tutte le righe
+# Alla fine tutte le liste conteranno tutti i valori che sono stati appesi alla lista più grande (L)
+
+
+# Creazione di un nuovo file utilizzando la funzione .split()
+new_name = tabella.split(',')[0] + "._quote2.csv" # Serve il file che abbiamo appena creato; Se ho una variabile che contiene un nome la vado a splittare nel punto in cui c'è questo carattere (',') e poi vado ad aggiungere questo tipo di stringa "._quote2.csv"
+new_csv = open(new_name, 'w') # Per aprire un nuovo csv gli passo un nuovo nome, gli dico che si tratta di scrittura (w)
+writer = csv.writer(new_csv, delimiter = ',') # Quando me lo va a scrivere, me lo scrive con questo nome "._quote2.csv"
+
+
+# Cambiare il sistema di riferimento a un raster
+# Le coordinate geografiche (GCS = Geographic Coordinate System) si possono convertire in Spatial Reference System (SRS)
+gdal.Warp('nome raster di output', 'nome raster di partenza' dstSRS = 'nome del sistema di riferimento che vogliamo') # Stiamo ancora lavorando all'interno della working directory (OS), quindi non dobbiamo specificare il path del file, basta specificare il nome del file
+
+
