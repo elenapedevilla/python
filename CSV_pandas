@@ -1,7 +1,7 @@
 # Importare sulla prima riga i moduli/metodi
 import csv
 my_csv = open("C:/lab2_python/montecristo_point.csv", 'r') # Cambiare da backslash a slash
-table = csv.reader(my_csv, delimiter = ',')
+table = csv.reader(my_csv, delimiter = ',') # Table = lo legge come dato tabellare
 
 for row in table: # Per tutte le righe in table
     print(row) # Stampa le coordinate come stringhe, sono delimitate dall'apice
@@ -15,7 +15,7 @@ for row in table: # Per tutte le righe in table
 # Tipo di dizionario
 # Ad ogni valore è assegnata una chiave
 Veggies = dict([
-    ('Winter', 'Cauliflowers') # Si tratta di una coppia
+    ('Winter', 'Cauliflowers') # Si tratta di una coppia; la prima (winter) è la chiave, la seconda (cauliflowers) è il valore
     ('Spring', 'Artichokes')
     ('Summer', 'Eggplants')
     ('Fall', 'Pumpkins')
@@ -77,7 +77,7 @@ out_csv.close()
 # Aggiungiamo h_ellips (quota ellissoidica: formula: h = H + N; H = quota geoidica; N = ondulazione del geoide)
 # Utilizziamo nuovamente il file copy senza headliner
 import csv
-header = ['id', 'coord_x', 'coord_y', 'h', 'h_ellips'] # Abbiamo aggiunto una colonna: h_ellips
+header = ['id', 'coord_x', 'coord_y', 'h', 'h_ellips'] # Abbiamo aggiunto una colonna: h_ellips; calcolo della quota ellissoidica
 my_csv = open("C:/lab2_python/montecristo_point_copy.csv", 'r') 
 table = csv.reader(my_csv, delimiter = ',')
 
