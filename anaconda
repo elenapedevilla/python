@@ -2,11 +2,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+
+
+# Esempio di come si fa un plot del seno (e poi anche del coseno)
 # Asse x
-x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico
+x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico; il grafico parte da 0 e finisce a 4 pi greco (= pi doppio); passo = 0.1
 
 # Asse y
-y1 = np.sin(x)
+y1 = np.sin(x) # L'asse x va plottata in funzione del seno
 # y2 = np.cos(x)
 
 plt.plot(x, y1)
@@ -15,7 +18,7 @@ plt.show()
 
 
 
-# Stessa cosa, un pochino diverso
+# Stessa cosa, usiamo anche l'altra asse y (y2)
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -26,12 +29,29 @@ x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico
 y1 = np.sin(x)
 y2 = np.cos(x)
 
-plt.plot(x, y1, x, y2)
+plt.plot(x, y1, x, y2) # Così mi plotta seno e coseno
 plt.show()
 
 
 
-# Primo vero grafico con denominazioni ecc.
+# Possiamo anche aggiungere una terza asse y
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Asse x
+x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico
+
+# Asse y
+y1 = np.sin(x)
+y2 = np.cos(x)
+y3 = np.cos(x//2)
+plt.plot(x, y1, x, y2, x, y3)
+plt.show()
+
+
+
+# Stessa cosa, ma modo di scrittura diverso/più elegante
+Primo vero grafico con denominazioni ecc.
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -42,15 +62,15 @@ x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico
 y1 = np.sin(x)
 y2 = np.cos(x)
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots() # Andiamo a creare dei subplot; utilizzando questo metodo dobbiamo specificare figura (fig), assi (ax) e poi mettere i subplot
 
-plt.plot(x, y1, label = 'sin(x)')
+plt.plot(x, y1, label = 'sin(x)') # Questo è il primo subplot; ogni subplot è il plot di una funzione
 plt.plot(x, y2, label = 'cos(x)')
-plt.legend()
+plt.legend() # Per inserire la legenda
 
 plt.title("sin(x) and cos(x) plots")
-plt.xlabel("xvalues from 0 to 4pi")
-plt.ylabel("sin(x) and cos(x)")
+plt.xlabel("xvalues from 0 to 4pi") # Sull'asse x ci sono i valori di 0 a 4 pi greco; "" perché sono commenti, è il testo che noi andremo ad aggiungere al grafico per completarlo
+plt.ylabel("sin(x) and cos(x)") # Sull'asse y ci sono i valori di seno e coseno
 
 
 
@@ -61,16 +81,24 @@ import pandas as pd
 head = ['stazione', 'data', 'ora', 'temp_min', 'temp_max', 'umidità_min', 'umidità_max', 'precipitazioni', 'vento (m/s)', 'direzione']
 csv = pd.read_csv(r"C:\lab2_python\dati_meteo_ostiglia_nuovi.csv", names = head)
 
-csv['data'] = csv['data'].astype('datetime64[ns]')
+csv['data'] = csv['data'].astype('datetime64[ns]') # datetime64[ns] è un formato per la lettura della data; quindi riconosce che questa colonna contiene una data (anno, mese e giorno)
 
 # Calcolo valori medi
-csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1)
+csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1) # Come avevamo già fatto: temp max + temp min e il tutto diviso 2; , 1 per dire che noi per questo calcolo andiamo a prendere solo il primo numero dopo la virgola 
 csv['umid_mean'] = round((csv['umidità_max'] + csv['umidità_min'])/2, 1)  
+# Se adesso clicchiamo su csv vediamo che sono state aggiunte due colonne: quella relativa alla temperatura media e quella relativa all'umidità media
 
-plt.plot_date(csv['data'], csv['temp_mean'], label = 'mean', linestyle = 'solid', fmt = 'o')
 
-# Per girare le etichette dell'asse x
-plt.xticks(rotation = 90)
+
+# Plot con serie temporale
+plt.plot_date(csv['data'], csv['temp_mean'], label = 'mean', linestyle = 'solid', fmt = 'o') 
+# Sull'asse x prende la data, quindi i giorni che sono sul csv; sull'asse y abbiamo la temperatura media
+# Come ettichetta scriviamo 'mean', perché sappiamo che si tratta di temperatura
+# Linestyle è lo stile della linea; con 'solid' mette una linea continua; con '--' mi mette la linea trattegiata; '_.' mette una linea poi punto ecc.; ':' mette una linea a punti
+# fmt = 'o' -> mette la palllina; con '*' si mette una stellina
+
+# Per girare le etichette dell'asse x, così non si sovrappongono
+plt.xticks(rotation = 90) # Si può naturalmente anche mettere a 45 o qualsiasi altro grado; normalmente però o 90 o 45
 
 # Aggiungere i dettagli (titolo plot, nomi assi, legenda ecc.)
 plt.title('Temperature plot')
@@ -80,7 +108,7 @@ plt.legend()
 
 
 
-# Primo vero e proprio plot 
+# Plot di più linee insieme
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd 
@@ -104,7 +132,7 @@ plt.legend()
 
 
 
-# Altro plot
+# Immagine che contiene due plot separati
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd 
@@ -118,12 +146,12 @@ csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1)
 csv['umid_mean'] = round((csv['umidità_max'] + csv['umidità_min'])/2, 1)  
 
 # Subplots
-plt.figure(figsize = (8, 5), tight_layout = True) # Figsize(h, v)
-plt.suptitle('Plot vari...', size = 45)
+plt.figure(figsize = (8, 5), tight_layout = True) # Figsize(h, v) # figsize = figura con dimensioni che scelgo: 8 è la dimensione orizzontale, 5 è quella verticale; tight_layout si deve mettere
+plt.suptitle('Plot vari...', size = 45) # Titolo superiore; size = dimensione del carattere del titolo
 
 # Plot 1
-plt.subplot(1,2,1) # Righe, colonne, numero plot in serie
-plt.title('Temperature plot')
+plt.subplot(1,2,1) # Righe, colonne, numero plot in serie; si va a specificare quante righe ha il plot, quante colonne e qual è il numero di plot in serie
+plt.title('Temperature plot') # Titolo del primo plot
 plt.plot_date(csv['data'], csv['temp_mean'], label = 'mean', linestyle = '--', fmt = '*')
 plt.plot_date(csv['data'], csv['temp_max'], label = 'max', linestyle = '--', fmt = '*')
 plt.plot_date(csv['data'], csv['temp_min'], label = 'min', linestyle = '--', fmt = '*')
@@ -133,12 +161,13 @@ plt.ylabel('Mean temperature (°C)')
 plt.legend()
 
 # Plot 2
-plt.subplot(1,2,2) # 2 alla fine perché è il secondo plot all'interno della serie
-plt.bar(csv['data'], csv['precipitazioni'])
+plt.subplot(1,2,2) # 1 = una riga; 2 = due colonne; 2 alla fine perché è il secondo plot all'interno della serie
+plt.bar(csv['data'], csv['precipitazioni']) # Sull'asse x = data; sull'asse y = precipitazioni
 plt.xticks(rotation = 90)
-plt.title("Precipitation barplot")
-plt.xlabel("Data (yyyy-mm-dd)")
-plt.ylabel("Precipitaion (mm)")
+plt.title('Precipitation barplot')
+plt.xlabel('Data (yyyy-mm-dd)')
+plt.ylabel('Precipitaion (mm)')
+# Qua non mettiamo plt.legend(), perché essendo un grafico a barre non abbiamo la legenda, non serve
 
 
 
@@ -163,23 +192,92 @@ plt.ylabel('Mean humidity (g/m^3')
 
 
 
+# Plot con 4 grafici: temperatura (minima, media, massima), umidità (minima, media, massima), precipitazioni, scatterplot 
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd 
+head = ['stazione', 'data', 'ora', 'temp_min', 'temp_max', 'umidità_min', 'umidità_max', 'precipitazioni', 'vento (m/s)', 'direzione']
+csv = pd.read_csv(r"C:\lab2_python\dati_meteo_ostiglia_nuovi.csv", names = head)
+
+csv['data'] = csv['data'].astype('datetime64[ns]')
+
+# Calcolo valori medi
+csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1)
+csv['umid_mean'] = round((csv['umidità_max'] + csv['umidità_min'])/2, 1)  
+
+# Subplots
+plt.figure(figsize = (8, 8), tight_layout = True) # Abbiamo cambiato grandezza dell'immagine
+plt.suptitle('Plot vari...', size = 45) 
+
+# Plot 1
+plt.subplot(2,2,1) 
+plt.title('Temperature plot')
+plt.plot_date(csv['data'], csv['temp_mean'], label = 'mean', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['temp_max'], label = 'max', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['temp_min'], label = 'min', linestyle = '--', fmt = '*')
+plt.xticks(rotation = 90)
+plt.xlabel('Data (yyyy-mm-dd)')
+plt.ylabel('Mean temperature (°C)')
+plt.legend()
+
+# Plot 2
+plt.subplot(2,2,2) 
+plt.title('Humidity plot') 
+plt.plot_date(csv['data'], csv['umid_mean'], label = 'mean', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['umidità_max'], label = 'max', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['umidità_min'], label = 'min', linestyle = '--', fmt = '*')
+plt.xticks(rotation = 90)
+plt.xlabel('Data (yyyy-mm-dd)')
+plt.ylabel('Mean umidità (g/m^3)')
+plt.legend()
+
+# Plot 3
+plt.subplot(2,2,3) 
+plt.bar(csv['data'], csv['precipitazioni']) 
+plt.xticks(rotation = 90)
+plt.title('Precipitation barplot')
+plt.xlabel('Data (yyyy-mm-dd)')
+plt.ylabel('Precipitaion (mm)')
+
+# Plot 4
+plt.subplot(2,2,4) 
+plt.title('Scatterplot')
+plt.scatter(csv['temp_mean'], csv['umid_mean'])
+plt.xlabel('Mean temperature(°C)')
+plt.ylabel('Mean humidity (g/m^3')
+
+
+
 # Aprire un raster
 # Libs 
 import pandas as pd
-import rasterio
+import rasterio # Per leggere il raster abbiamo bisogno di rasterio
 import geopandas as gpd
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # Serve per plottare il raster
 from rasterio.plot import show
 
 raster_file = (r"C:\lab2_python\pianosa\pianosa_dem.tif")
-raster = rasterio.open(raster_file)
+raster = rasterio.open(raster_file) # Con la funzione rasterio.open si apre il raster
 
-plt.imshow(raster.read(1), cmap='gist_earth') # Gist_earth dà il colore alla mappa
+plt.imshow(raster.read(1), cmap='gist_earth') # raster.read(1) = mi deve mostrare la prima banda; Gist_earth dà il colore alla mappa 
 # Abbiamo importato l'immagine
 
+# Interrogazione del raster nella console
+# raster.name -> stampa il percorso del raster (il path)
+# raster.mode -> modalità, in questo caso r, quindi lettura, non può essere sovrascritto
+# raster.width -> largezza del raster
+# raster.height -> altezza del raster 
+# raster.crs -> coordinate reference system, stampa tutti i dati riguardanti il sistema di riferimento
+# raster.indexes -> quante bande ha il raster
+# band = raster.read(1) -> vado a richiamare la variabile: band -> stampa il raster letto come matrice
+# band[78,45] -> 78 e 45 sono coordinate che abbiamo inserito noi in questo caso; ci dice il valore di quota in quel determinato punto (in quelle coordinate)
 
 
-# Raster + csv
+# Se scriviamo: plt.imshow(raster.read(1), cmap='???') -> esce un plot bianco e nella console vediamo tutti i nomi possibili di colori che possiamo dare all'immagine (cfr. ColorRampPalette in R)
+
+
+
+# Plot insieme: raster + csv
 import pandas as pd
 import rasterio
 import geopandas as gpd
@@ -190,6 +288,21 @@ raster_file = (r"C:\lab2_python\pianosa\pianosa_dem.tif")
 csv_file = (r"C:\lab2_python\pianosa\points_pianosa.csv")
 raster = rasterio.open(raster_file)
 df = pd.read_csv(csv_file)
-df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord']))
+df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord'])) # Gli dico che il geodataframe lo deve creare dalla coordinata x e dalla coordinata y delle colonne del dataframe; quindi sovrascrive questa variabile e me la trasforma in geodataframe
+# Se adesso si clicca il Variable Explorer vediamo una colonna in più: Geometry; adesso se carico questa cosa su qgis non devo specificare le coordinate e il tipo di geometria, lo prende in automatico
 
 
+# Il tutto si può anche scrivere in forma di una funzione, così è più comodo quando lo si deve andare a richiamare
+def geo_dataframe(df)_
+    geo_df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord'])) 
+    return geo_df
+
+df = geo_dataframe(df)
+# Succede la stessa identica cosa di prima, solo che abbiamo utilizzato la funzione
+
+
+# Il plot del raster e del csv 
+fig, ax = plt.subplots
+base = show(raster, ax = ax, cmap = 'gist_earth') # La base della figura è il raster 
+df.plot(ax = ax, color = 'red', markersize = 5) # Il sopra della figura è il geodataframe
+# Vedremo i punti sopra il raster (sopra la figura)
