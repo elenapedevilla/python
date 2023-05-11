@@ -1,0 +1,195 @@
+# Spyder 
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Asse x
+x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico
+
+# Asse y
+y1 = np.sin(x)
+# y2 = np.cos(x)
+
+plt.plot(x, y1)
+plt.show()
+# Run e vediamo il plot
+
+
+
+# Stessa cosa, un pochino diverso
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Asse x
+x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico
+
+# Asse y
+y1 = np.sin(x)
+y2 = np.cos(x)
+
+plt.plot(x, y1, x, y2)
+plt.show()
+
+
+
+# Primo vero grafico con denominazioni ecc.
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Asse x
+x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico
+
+# Asse y
+y1 = np.sin(x)
+y2 = np.cos(x)
+
+fig, ax = plt.subplots()
+
+plt.plot(x, y1, label = 'sin(x)')
+plt.plot(x, y2, label = 'cos(x)')
+plt.legend()
+
+plt.title("sin(x) and cos(x) plots")
+plt.xlabel("xvalues from 0 to 4pi")
+plt.ylabel("sin(x) and cos(x)")
+
+
+
+# Plot da csv
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd 
+head = ['stazione', 'data', 'ora', 'temp_min', 'temp_max', 'umidità_min', 'umidità_max', 'precipitazioni', 'vento (m/s)', 'direzione']
+csv = pd.read_csv(r"C:\lab2_python\dati_meteo_ostiglia_nuovi.csv", names = head)
+
+csv['data'] = csv['data'].astype('datetime64[ns]')
+
+# Calcolo valori medi
+csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1)
+csv['umid_mean'] = round((csv['umidità_max'] + csv['umidità_min'])/2, 1)  
+
+plt.plot_date(csv['data'], csv['temp_mean'], label = 'mean', linestyle = 'solid', fmt = 'o')
+
+# Per girare le etichette dell'asse x
+plt.xticks(rotation = 90)
+
+# Aggiungere i dettagli (titolo plot, nomi assi, legenda ecc.)
+plt.title('Temperature plot')
+plt.xlabel('Data (yyyy-mm-dd)')
+plt.ylabel('Mean temperature (°C)')
+plt.legend()
+
+
+
+# Primo vero e proprio plot 
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd 
+head = ['stazione', 'data', 'ora', 'temp_min', 'temp_max', 'umidità_min', 'umidità_max', 'precipitazioni', 'vento (m/s)', 'direzione']
+csv = pd.read_csv(r"C:\lab2_python\dati_meteo_ostiglia_nuovi.csv", names = head)
+
+csv['data'] = csv['data'].astype('datetime64[ns]')
+
+# Calcolo valori medi
+csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1)
+csv['umid_mean'] = round((csv['umidità_max'] + csv['umidità_min'])/2, 1)  
+
+plt.title('Temperature plot')
+plt.plot_date(csv['data'], csv['temp_mean'], label = 'mean', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['temp_max'], label = 'max', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['temp_min'], label = 'min', linestyle = '--', fmt = '*')
+plt.xticks(rotation = 90)
+plt.xlabel('Data (yyyy-mm-dd)')
+plt.ylabel('Mean temperature (°C)')
+plt.legend()
+
+
+
+# Altro plot
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd 
+head = ['stazione', 'data', 'ora', 'temp_min', 'temp_max', 'umidità_min', 'umidità_max', 'precipitazioni', 'vento (m/s)', 'direzione']
+csv = pd.read_csv(r"C:\lab2_python\dati_meteo_ostiglia_nuovi.csv", names = head)
+
+csv['data'] = csv['data'].astype('datetime64[ns]')
+
+# Calcolo valori medi
+csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1)
+csv['umid_mean'] = round((csv['umidità_max'] + csv['umidità_min'])/2, 1)  
+
+# Subplots
+plt.figure(figsize = (8, 5), tight_layout = True) # Figsize(h, v)
+plt.suptitle('Plot vari...', size = 45)
+
+# Plot 1
+plt.subplot(1,2,1) # Righe, colonne, numero plot in serie
+plt.title('Temperature plot')
+plt.plot_date(csv['data'], csv['temp_mean'], label = 'mean', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['temp_max'], label = 'max', linestyle = '--', fmt = '*')
+plt.plot_date(csv['data'], csv['temp_min'], label = 'min', linestyle = '--', fmt = '*')
+plt.xticks(rotation = 90)
+plt.xlabel('Data (yyyy-mm-dd)')
+plt.ylabel('Mean temperature (°C)')
+plt.legend()
+
+# Plot 2
+plt.subplot(1,2,2) # 2 alla fine perché è il secondo plot all'interno della serie
+plt.bar(csv['data'], csv['precipitazioni'])
+plt.xticks(rotation = 90)
+plt.title("Precipitation barplot")
+plt.xlabel("Data (yyyy-mm-dd)")
+plt.ylabel("Precipitaion (mm)")
+
+
+
+# Scatterplot
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd 
+head = ['stazione', 'data', 'ora', 'temp_min', 'temp_max', 'umidità_min', 'umidità_max', 'precipitazioni', 'vento (m/s)', 'direzione']
+csv = pd.read_csv(r"C:\lab2_python\dati_meteo_ostiglia_nuovi.csv", names = head)
+
+csv['data'] = csv['data'].astype('datetime64[ns]')
+
+# Calcolo valori medi
+csv['temp_mean'] = round((csv['temp_max'] + csv['temp_min'])/2, 1)
+csv['umid_mean'] = round((csv['umidità_max'] + csv['umidità_min'])/2, 1) 
+
+# Scatterplot
+plt.title('Scatterplot')
+plt.scatter(csv['temp_mean'], csv['umid_mean'])
+plt.xlabel('Mean temperature(°C)')
+plt.ylabel('Mean humidity (g/m^3')
+
+
+
+# Aprire un raster
+# Libs 
+import pandas as pd
+import rasterio
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from rasterio.plot import show
+
+raster_file = (r"C:\lab2_python\pianosa\pianosa_dem.tif")
+raster = rasterio.open(raster_file)
+
+plt.imshow(raster.read(1), cmap='gist_earth') # Gist_earth dà il colore alla mappa
+# Abbiamo importato l'immagine
+
+
+
+# Raster + csv
+import pandas as pd
+import rasterio
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from rasterio.plot import show
+
+raster_file = (r"C:\lab2_python\pianosa\pianosa_dem.tif")
+csv_file = (r"C:\lab2_python\pianosa\points_pianosa.csv")
+raster = rasterio.open(raster_file)
+df = pd.read_csv(csv_file)
+df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord']))
+
+
