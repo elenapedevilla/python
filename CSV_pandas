@@ -102,7 +102,7 @@ out_csv.close()
 
 # Metodo Pandas
 import pandas as pd
-my_csv = pd.read_csv("C:\lab2_python\montecristo_point.csv") # La funzione serve per leggere un csv
+my_csv = pd.read_csv("C:/lab2_python/montecristo_point.csv") # La funzione serve per leggere un csv
 
 # print(my_csv) # Pandas non usa un ciclo for per stampare tutte le righe del csv
 # print(my_csv['coordx']) # Pandas assegna automaticamente un id suo
@@ -112,7 +112,7 @@ my_csv = pd.read_csv("C:\lab2_python\montecristo_point.csv") # La funzione serve
 #print(type(my_csv['h_elips']))
 
 my_csv ['h_elips'] = my_csv['h'] + 48 # Aggiungiamo la colonna della quota ellissoidica
-my_csv.to_csv("C:/lab2_python/out/PANDAS_montecristo_point_h_elips_5-4.csv", index = False) # Il path lo scrivo io; il suo header non ci piace, la prima colonna è vuota, ci disorienta solo, quindi lo togliamo con index = False
+my_csv.to_csv("C:/lab2_python/out/PANDAS_montecristo_point_h_elips_5-4.csv", index = False) # Il path lo scrivo io; il suo header non ci piace, la prima colonna è vuota, ci disorienta solo, quindi lo togliamo con index = False, in generale lo dobbiamo togliere sempre
 print('Done!') # Metodo molto più veloce; in questo caso non abbiamo fatto il procedimento dell'header, perché normalmente lo si ha
 
 
