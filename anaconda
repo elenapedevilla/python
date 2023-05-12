@@ -1,6 +1,15 @@
+# Apreire Spyder
+conda activate geo
+spyder
+
 # Spyder 
-import matplotlib.pyplot as plt
-import numpy as np
+# Libs 
+import pandas as pd
+import rasterio # Per leggere il raster abbiamo bisogno di rasterio
+import geopandas as gpd
+import matplotlib.pyplot as plt # Libreria per fare grafici, per fare plot
+import numpy as np # Serve per fare delle operazioni matematiche sugli array/sulle matrici
+from rasterio.plot import show # Serve per plottare il raster, per gestire i dati raster
 
 
 
@@ -302,6 +311,101 @@ df = geo_dataframe(df)
 
 # Il plot del raster e del csv 
 fig, ax = plt.subplots
-base = show(raster, ax = ax, cmap = 'gist_earth') # La base della figura è il raster 
+base = show(raster, ax = ax, cmap = 'gist_earth') # La base della figura è il raster; ax sono gli assi
 df.plot(ax = ax, color = 'red', markersize = 5) # Il sopra della figura è il geodataframe
 # Vedremo i punti sopra il raster (sopra la figura)
+
+
+
+# Campionamento del raster 
+import pandas as pd
+import rasterio
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from rasterio.plot import show
+
+# --- Funzioni ---
+def geo_dataframe(df):
+    geo_df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord'])) 
+    return geo_df
+
+# -------
+raster_file = (r"C:\lab2_python\pianosa\pianosa_dem.tif")
+csv_file = (r"C:\lab2_python\pianosa\points_pianosa.csv")
+
+df = pd.read_csv(csv_file)
+raster = rasterio.open(raster_file)
+
+df = geo_dataframe(df)
+
+
+# Lista dei valori campionati
+L = []
+for index, row in df.iterrows():
+    # Coordinate che si trovano nel csv (df)
+    x = row['xcoord']
+    y = row['ycoord']
+    raster_x, raster_y = raster.index(x, y)
+    value = raster.read(1, window = ((raster_y, raster_y +1), (raster_x, raster_x + 1)))
+    L.append(float(value[0][0]))
+df['quota'] = L
+
+# Nella shell:
+df.to_csv(r"C:\lab2_python\pianosa\points_pianosa_sampled.csv", index = False) # Abbiamo il nuovo file creato (abbiamo aggiunto al nome _sample)
+
+# Creazione grafico a barre delle quote
+plt.bar(df['luogo'], df['quota']) 
+plt.xticks(rotation = 90)
+plt.title('Height barplot')
+plt.xlabel('Places')
+plt.ylabel('Sampled height')
+
+
+
+# Utilizzo di più raster contemporaneamente
+import pandas as pd
+import rasterio
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from rasterio.plot import show
+import os 
+
+# --- Funzioni ---
+def geo_dataframe(df):
+    geo_df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord'])) 
+    return geo_df
+
+# -------
+csv_file = (r"C:\lab2_python\pianosa\points_pianosa.csv")
+rast_path = (r"C:\lab2_python\pianosa_diversi_raster.csv") # Abbiamo più raster, quindi utilizziamo un path più generico
+
+# Apertura del fiel csv con pandas
+df = pd.read_csv(csv_file)
+# Geodataframe
+df = geo_dataframe(df)
+
+# Ciclo attraverso i file raster 
+for raster_file in os.listdir(rast_path):
+    # Apertura del raster con rasterio
+    raster = rasterio.open(rast_path + '\\' + raster_file)
+    
+    # Lista dei valori campionati
+    L = []
+    # Ciclo attraverso le righe del dataframe
+    for index, row in df.iterrows():
+        # Coordinata x e y della riga corrente
+        x = row['xcoord']
+        y = row['ycoord']
+        # Trasformazione della coordinata in coordinate del raster
+        raster_x, raster_y = raster-index(x, y)
+        # Campionamento del valore del raster alla coordinata 
+        value = raster.read(1, window = ((raster_y, raster_y + 1), (raster_x, raster_x + 1)))
+        # Aggiunta del valore alla lista dei valori campionati
+        L.append(float(value[0][0]))
+    # Aggiunta dei valori al dataframe 
+    column_name = 'quota_' + raster_file.split('.')[0] # Nome colonna basato sul nome del raster
+    df[column_name] = L
+
+# Salvataggio del dataframe in un file csv
+output_csv = (r"C:\lab2_python\pianosa.csv")
+# df.to_csv(output_csv, index = False)
