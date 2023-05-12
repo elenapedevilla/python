@@ -1,6 +1,6 @@
 # Importare sulla prima riga i moduli/metodi
 import csv
-my_csv = open("C:/lab2_python/montecristo_point.csv", 'r') # Cambiare da backslash a slash
+my_csv = open("C:/lab2_python/montecristo_point.csv", 'r') # Cambiare da backslash a slash oppure aggiungere un r davanti: r("C:/...)
 table = csv.reader(my_csv, delimiter = ',') # Table = lo legge come dato tabellare
 
 for row in table: # Per tutte le righe in table
