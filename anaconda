@@ -6,7 +6,7 @@ import numpy as np
 
 # Esempio di come si fa un plot del seno (e poi anche del coseno)
 # Asse x
-x = np.arange(0, 4*np.pi, 0.1) # Inizio, fine, passo del grafico; il grafico parte da 0 e finisce a 4 pi greco (= pi doppio); passo = 0.1
+x = np.arange(0, 4*np.pi, 0.1) # np.arange va a creare l'inizio, fine, e passo del grafico; il grafico parte da 0 e finisce a 4 pi greco (= pi doppio); passo = 0.1
 
 # Asse y
 y1 = np.sin(x) # L'asse x va plottata in funzione del seno
@@ -51,7 +51,6 @@ plt.show()
 
 
 # Stessa cosa, ma modo di scrittura diverso/più elegante
-Primo vero grafico con denominazioni ecc.
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -293,7 +292,7 @@ df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord
 
 
 # Il tutto si può anche scrivere in forma di una funzione, così è più comodo quando lo si deve andare a richiamare
-def geo_dataframe(df)_
+def geo_dataframe(df):
     geo_df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord'])) 
     return geo_df
 
