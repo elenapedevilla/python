@@ -1,6 +1,6 @@
 # Aprire qgis; console python; mostra editor
 from osgeo import gdal
-my_data =gdal.Open("C:/lab2_python/pianosa/pianosa_dem.tif")
+my_data = gdal.Open("C:/lab2_python/pianosa/pianosa_dem.tif")
 print(my_data.GetMetadata()) # Stampa metadati
 
 band = my_data.GetRasterBand(1) # In questo caso prendiamo la prima banda; lavoriamo con valori di quota (DEM)
