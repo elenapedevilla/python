@@ -19,17 +19,18 @@ print(num_str, type(num_str))
 
 
 # Assignment by input()
-nome = input('inserire nome: ')
-print('Il mio nome è ' + nome)
+nome = input('inserire nome: ') # Con la funzione input Python legge ciò che si scrive come stringa, quindi se utilizziamo un valore numerico lo dobbiamo specificare: int(input)
+print('Il mio nome è ' + nome) # Nella shell posso scrivere il mio nome (es. Elena e uscirà: Il mio nome è Elena (nome che ho inserito nella shell)
 
 
 
 # Format
+nome = input('inserire nome: ')
 print('Il mio nome è {}'.format(nome))
-# Due modi diversi per fare la stessa cosa
+# Due modi diversi per fare la stessa cosa (sempre concatenazione di stringhe)
 
 num = int(input('inserire numero: '))
-print('la variabile è di tipo {}'.format(num, type(num)))
+print('La variabile è di tipo {}'.format(num, type(num)))
 
 
 
@@ -47,7 +48,7 @@ print('La sottrazione di {} e {} è {}'.format(a,b, sottr))
 
 
 
-# String operations
+# String operations (le uniche operazioni matematiche possibili su stringhe sono + e *)
 frase1 = 'ciao '
 frase2 = 'si '
 frase = frase1 + frase2 # Così facendo concateno le due stringhe
@@ -76,7 +77,7 @@ from math import pi # Mi importa solo il pi, non gli altri moduli
 from math import *
 a1 = pi/2 # 90° in radianti
 a2 = pi # 180°
-a3 = (3/2) * pi #270°
+a3 = (3/2) * pi # 270°
 a4 = 2*pi
 sin1 = int(sin(a1)) # int per avere un numero intero, senza decimali; se sin1 = sin(a1) uscirà 1.0; con int uscirà 1
 sin2 = int(sin(a2))
@@ -190,6 +191,7 @@ x = area_cerchio(raggio)
 x = round(x, 5) # Numero di cifre decimali che voglio dietro la virgola, in questo caso 5
 
 print('{} * {}^2 = {}'.format(pi, raggio, x))
+
 
 # Esercizio secondi totali(h, m, s)
 from math import *
@@ -386,17 +388,17 @@ def insert_input():
 insert_input()
 
 
-# Modulo Random
+# Modulo Random: andiamo a vedere se un determinato numero si trova all'interno della lista
 from random import *
 def insert_random(n, L):
     L = [] # Dichiaro una lista vuota in cui 'appendere' dei valori
-    for el in range(10): # Per ogni elemento nel range di 10
+    for el in range(10): # Per ogni elemento nel range di 10; abbiamo una lista con 10 elementi al suo interno, finché a questa lista non vengono appesi/aggiunti 10 elementi non esce dal ciclo
         b = randint(0, 10) # Creo una variabile in cui vado a mettere un numero random che va da 0 a 10 (numero intero = randint)
         L.append(b) # Alla lista appendo questo numero
     print(L)
     if n in L: # Se questo numero è presente nella lista stampa:
         print('Il numero {} è presente nella lista!'.format(n))
-    elif n not in L: # Si può anche mettere direttamente else o indentare prima il print (senza elif o else9)
+    elif n not in L: # Si può anche mettere direttamente else o indentare prima il print (senza elif o else)
         print('Il numero {} non è presente nella lista!'.format(n))
 
 num = input('Scegli numero: ')
@@ -422,7 +424,7 @@ print('I primi {} numeri della serie di Fiboncci sono {}:'.format(n, fib_sec))
 
 
 
-# Fotoframmetria
+# Fotogrammetria
 # Calcolo distanza di presa
 # Per calcolare la distanza di presa ci servono i seguenti parametri: GSD, distanza, dimensione del pixel
 def distanza_presa(gsd, dist, dim):
@@ -431,12 +433,12 @@ def distanza_presa(gsd, dist, dim):
                    return dist_presa_m
 
 # Calcolo Ground Sample Point (GSD)
-def ground_sampe_p(dist, dim, deist_princ):
+def ground_sampe_p(dist, dim, dist_princ):
     gsd = float ((dist_princ / dist) * dim)
     return gsd #mm
     
 # Calcolo impronta fotogramma
-def impronta_foto(distr, dist_princ, h_sens, v_sens):
+def impronta_foto(dist, dist_princ, h_sens, v_sens):
     h = float ((dist, dist_princ, h_sens, v_sens):
                h_m = h / 1000
                v = float ((dist_princ / dist) * v_sens)
