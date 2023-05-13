@@ -473,5 +473,75 @@ df.to_csv(output_csv, index = False)
 
 
 
-# Doppio plot della mappa e del barplot delle coordinate 
+# Figura con 4 plot che corrispondono ai 4 raster
+plt.figure(figsize = (20, 20), tight_layout = True) # figsize(h, v)
+plt.suptitle('Plot vari...\n', size = 80) # \n = lascia una riga a capo, c'è uno spazio tra il titolo grande/generale e i plot che seguiranno
 
+# Plot 1
+plt.subplot(2,2,1) # Righe, colonne, numero plot
+plt.title('Pianosa DEM 1 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_1'], color = 'red') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 2
+plt.subplot(2,2,2) 
+plt.title('Pianosa DEM 2 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_2'], color = 'orange') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 3
+plt.subplot(2,2,3) 
+plt.title('Pianosa DEM 3 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_3'], color = 'green') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 4
+plt.subplot(2,2,4) 
+plt.title('Pianosa DEM 4 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_4'], color = 'blue') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+
+# Stesso identico codice di prima, senza commenti
+plt.figure(figsize = (20, 20), tight_layout = True) # figsize(h, v)
+plt.suptitle('Plot vari...\n', size = 80)
+
+# Plot 1
+plt.subplot(2,2,1) 
+plt.title('Pianosa DEM 1 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_1'], color = 'red') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 2
+plt.subplot(2,2,2) 
+plt.title('Pianosa DEM 2 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_2'], color = 'orange') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 3
+plt.subplot(2,2,3) 
+plt.title('Pianosa DEM 3 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_3'], color = 'green') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 4
+plt.subplot(2,2,4) 
+plt.title('Pianosa DEM 4 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_4'], color = 'blue') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
