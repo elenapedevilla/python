@@ -362,7 +362,7 @@ s[2:5] # Uscirà ola
 s1 = ciaociao
 s2 = s1[0:4] # Uscirà solo ciao, in quanto prende solo i primi 4 elementi
 stot = s + s2 # Uscirà scolapastaciao
-stot2 = s + ' ' + s2 # Così uscirà scolapasta ciao; abbiamo aggiunto uno spazio; si può acnhe aggiungere ad es. un punto di domanda '?'
+stot2 = s + ' ' + s2 # Così uscirà scolapasta ciao; abbiamo aggiunto uno spazio; si può anche aggiungere ad es. un punto di domanda '?'
 
 # Funzione per contare quante volte compare un valore in una lista
 def conta_el(l,n): # Parametro: lista, numero
