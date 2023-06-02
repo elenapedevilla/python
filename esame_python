@@ -22,7 +22,7 @@ df = pd.read_csv(csv_file)
 df = geo_dataframe(df)
 
 
-# 3) Scrivere la funzione per il campionamento dei dati raster 
+# 3.1) Scrivere la funzione per il campionamento dei dati raster 
 for raster_file in os.listdir(rast_path):
     raster = rasterio.open(rast_path + '\\' + raster_file)
     
@@ -36,6 +36,10 @@ for raster_file in os.listdir(rast_path):
     
     column_name = 'quota_' + raster_file.split('.')[0]
     df[column_name] = L
+    
+
+# 3.2) Richiamare le funzioni
+
 
 
 # 4) Scrivere/creare il nuovo CSV contenente i valori campionati dai raster
@@ -47,7 +51,7 @@ df.to_csv(output_csv, index = False)
 
 # 5) Creare un'immagine contenente i barplot dei valori campionati
 plt.figure(figsize = (20, 20), tight_layout = True) 
-plt.suptitle('4 barplot', size = 80)
+plt.suptitle('Barplot valori campionati', size = 80)
 
 # Plot 1
 plt.subplot(2,2,1) 
