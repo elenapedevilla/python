@@ -45,7 +45,7 @@ df.to_csv(output_csv, index = False)
 '''
 
 
-# Creare un'immagine contenente i barplot dei valori campionati
+# 5) Creare un'immagine contenente i barplot dei valori campionati
 plt.figure(figsize = (20, 20), tight_layout = True) 
 plt.suptitle('4 barplot', size = 80)
 
