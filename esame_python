@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from rasterio.plot import show
 
 
+
 # 2) Scrivere la funzione per creare il geodataframe
 def geo_dataframe(df):
     geo_df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord'])) 
@@ -20,6 +21,7 @@ rast_path = (r"C:\lab2_esercitazione_python\data\pianosa_rasters")
 
 df = pd.read_csv(csv_file)
 df = geo_dataframe(df)
+
 
 
 # 3.1) Scrivere la funzione per il campionamento dei dati raster 
@@ -45,10 +47,9 @@ sample_raster("C:\lab2_esercitazione_python\pianosa_output.csv", "C:\lab2_eserci
 
 
 # 4) Scrivere/creare il nuovo CSV contenente i valori campionati dai raster
-'''
 output_csv = (r"C:/lab2_esercitazione_python/pianosa_output.csv")
 df.to_csv(output_csv, index = False)
-'''
+
 
 
 # 5) Creare un'immagine contenente i barplot dei valori campionati
