@@ -1,0 +1,82 @@
+# Esercitazione Python Lab2
+
+# 1) Dichiarare i moduli
+import os 
+import pandas as pd
+import rasterio
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from rasterio.plot import show
+
+
+# 2) Scrivere la funzione per creare il geodataframe
+def geo_dataframe(df):
+    geo_df = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['xcoord'], df['ycoord'])) 
+    return geo_df
+
+csv_file = (r"C:\lab2_esercitazione_python\data\points_pianosa.csv")
+rast_path = (r"C:\lab2_esercitazione_python\data\pianosa_rasters")
+
+
+df = pd.read_csv(csv_file)
+df = geo_dataframe(df)
+
+
+# 3) Scrivere la funzione per il campionamento dei dati raster 
+for raster_file in os.listdir(rast_path):
+    raster = rasterio.open(rast_path + '\\' + raster_file)
+    
+    L = []
+    for index, row in df.iterrows():
+        x = row['xcoord']
+        y = row['ycoord']
+        raster_x, raster_y = raster.index(x, y)
+        value = raster.read(1, window = ((raster_y, raster_y + 1), (raster_x, raster_x + 1)))
+        L.append(float(value[0][0]))
+    
+    column_name = 'quota_' + raster_file.split('.')[0]
+    df[column_name] = L
+
+
+# 4) Scrivere/creare il nuovo CSV contenente i valori campionati dai raster
+'''
+output_csv = (r"C:/lab2_esercitazione_python.csv")
+df.to_csv(output_csv, index = False)
+'''
+
+
+# Creare un'immagine contenente i barplot dei valori campionati
+plt.figure(figsize = (20, 20), tight_layout = True) 
+plt.suptitle('4 barplot', size = 80)
+
+# Plot 1
+plt.subplot(2,2,1) 
+plt.title('Pianosa DEM 1 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_1'], color = 'red') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 2
+plt.subplot(2,2,2) 
+plt.title('Pianosa DEM 2 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_2'], color = 'orange') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 3
+plt.subplot(2,2,3) 
+plt.title('Pianosa DEM 3 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_3'], color = 'green') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
+
+# Plot 4
+plt.subplot(2,2,4) 
+plt.title('Pianosa DEM 4 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_4'], color = 'blue') 
+plt.xticks(rotation = 90, size = 20)
+plt.xlabel('Places', size = 20)
+plt.ylabel('Height (m)', size = 20)
