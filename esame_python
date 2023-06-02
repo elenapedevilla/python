@@ -44,7 +44,7 @@ for raster_file in os.listdir(rast_path):
 
 # 4) Scrivere/creare il nuovo CSV contenente i valori campionati dai raster
 '''
-output_csv = (r"C:/lab2_esercitazione_python.csv")
+output_csv = (r"C:/lab2_esercitazione_python/pianosa_output.csv")
 df.to_csv(output_csv, index = False)
 '''
 
