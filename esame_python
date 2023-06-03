@@ -47,45 +47,43 @@ sample_raster("C:\lab2_esercitazione_python\pianosa_output.csv", "C:\lab2_eserci
 
 
 # 4) Scrivere/creare il nuovo CSV contenente i valori campionati dai raster
-'''
 output_csv = (r"C:/lab2_esercitazione_python/pianosa_output.csv")
 df.to_csv(output_csv, index = False)
-'''
 
 
 
 # 5) Creare un'immagine contenente i barplot dei valori campionati
-plt.figure(figsize = (20, 20), tight_layout = True) 
-plt.suptitle('Barplot valori campionati', size = 80)
+plt.figure(figsize = (18, 18), tight_layout = True) 
+plt.suptitle('Barplot valori campionati\n', size = 80)
 
 # Plot 1
 plt.subplot(2,2,1) 
 plt.title('Pianosa DEM 1 Quota', size = 40)
-plt.bar(df['luogo'], df['quota_pianosa_dem_1'], color = 'red') 
-plt.xticks(rotation = 90, size = 20)
+plt.bar(df['luogo'], df['quota_pianosa_dem_1'], color = 'mediumorchid') 
+plt.xticks(rotation = 90, size = 18)
 plt.xlabel('Places', size = 20)
 plt.ylabel('Height (m)', size = 20)
 
 # Plot 2
 plt.subplot(2,2,2) 
 plt.title('Pianosa DEM 2 Quota', size = 40)
-plt.bar(df['luogo'], df['quota_pianosa_dem_2'], color = 'orange') 
-plt.xticks(rotation = 90, size = 20)
+plt.bar(df['luogo'], df['quota_pianosa_dem_2'], color = 'paleturquoise') 
+plt.xticks(rotation = 90, size = 18)
 plt.xlabel('Places', size = 20)
-plt.ylabel('Height (m)', size = 20)
+plt.ylabel('\n Height (m)', size = 20)
 
 # Plot 3
 plt.subplot(2,2,3) 
-plt.title('Pianosa DEM 3 Quota', size = 40)
-plt.bar(df['luogo'], df['quota_pianosa_dem_3'], color = 'green') 
-plt.xticks(rotation = 90, size = 20)
+plt.title('\n Pianosa DEM 3 Quota', size = 40)
+plt.bar(df['luogo'], df['quota_pianosa_dem_3'], color = 'seagreen') 
+plt.xticks(rotation = 90, size = 18)
 plt.xlabel('Places', size = 20)
 plt.ylabel('Height (m)', size = 20)
 
 # Plot 4
 plt.subplot(2,2,4) 
 plt.title('Pianosa DEM 4 Quota', size = 40)
-plt.bar(df['luogo'], df['quota_pianosa_dem_4'], color = 'blue') 
-plt.xticks(rotation = 90, size = 20)
+plt.bar(df['luogo'], df['quota_pianosa_dem_4'], color = 'goldenrod') 
+plt.xticks(rotation = 90, size = 18)
 plt.xlabel('Places', size = 20)
 plt.ylabel('Height (m)', size = 20)
